@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label for="cluster_capacity">Capacity:</label>
                             <input required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                type="number" maxlength="4" class="form-control" id="cluster_capacity" name="cluster_capacity" placeholder="Max Users">
+                                type="number" maxlength="12" class="form-control" id="cluster_capacity" name="cluster_capacity" placeholder="1000">
                         </div>
                         <div class="form-group">
                             <div class="alert alert-dark usn-center-item" role="alert">

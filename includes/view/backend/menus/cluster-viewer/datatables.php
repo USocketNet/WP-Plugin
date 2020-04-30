@@ -6,7 +6,7 @@
         //GET THE REFERENCE OF THE CURRENT PAGE DATTABLES.
         var clusterDatatables = $('#project-datatables');
 
-        //SHOW NOTIFICATION THAT WE ARE CURRENTLY LOADING APPS.
+        //SHOW NOTIFICATION THAT WE ARE CURRENTLY LOADING Cluster.
 
         //SET INTERVAL DRAW UPDATE.
         loadingClusterList();
@@ -27,11 +27,11 @@
                     $('#project-notification').removeClass('usn-display-hide');
                 }
                 
-                var appListAction = { action: 'ReloadClusterList' };
+                var clusterListAction = { action: 'ReloadClusterList' };
                 $.ajax({
                     dataType: 'json',
                     type: 'POST', 
-                    data: appListAction,
+                    data: clusterListAction,
                     url: 'admin-ajax.php',
                     success : function( data )
                     {
@@ -55,12 +55,11 @@
         {
             //Set table column header.
             let columns = [
-                // { "sTitle": "IDENTITY",   "mData": "ID" },
                 { "sTitle": "NAME",   "mData": "cluster_name" },
                 { "sTitle": "INFO",   "mData": "cluster_info" },
                 { "sTitle": "HOSTNAME",   "mData": "cluster_hostname" },
                 { "sTitle": "CAPACITY",   "mData": "cluster_capacity" },
-                { "sTitle": "OWNER",   "mData": "cluster_owner" },
+                { "sTitle": "OWNER",   "mData": "user_login" },
                 {"sTitle": "Action", "mRender": function(data, type, item)
                     {
                         return '' + 
@@ -68,21 +67,22 @@
                             '<div class="btn-group" role="group" aria-label="Basic example">' +
 
                                 '<button type="button" class="btn btn-primary btn-sm"' +
-                                    ' data-toggle="modal" data-target="#EditAppOption"' +
+                                    ' data-toggle="modal" data-target="#EditClusterOption"' +
                                     ' title="Clicking this will show options for the game that can be modified."' +
-                                    ' data-aid="' + item.ID + '"' +  
-                                    ' data-aname="' + item.cluster_name + '"' +  
-                                    ' data-ainfo="' + item.cluster_info + '"' +  
-                                    ' data-aurl="' + item.cluster_owner + '"' +  
-                                    ' data-asta="' + item.cluster_hostname + '"' +  
-                                    ' data-acap="' + item.cluster_capacity + '"' +
+                                    ' data-cluster_id="' + item.ID + '"' +  
+                                    ' data-cluster_name="' + item.cluster_name + '"' +  
+                                    ' data-cluster_info="' + item.cluster_info + '"' +  
+                                    ' data-cluster_owner="' + item.cluster_owner + '"' +  
+                                    ' data-cluster_hostname="' + item.cluster_hostname + '"' +  
+                                    ' data-cluster_capacity="' + item.cluster_capacity + '"' +
+                                    ' data-cluster_secretkey="' + item.cluster_secretkey + '"' +
                                     ' >Options</button>' +
 
                                 '<button type="button" class="btn btn-info btn-sm"' +
                                     ' title="Clicking this will show realtime statistics and current state of the game."' + 
                                     ' disabled>More</button>' +
 
-                                '<button type="button" class="btn btn-info btn-sm appkey-' + item.ID + '"' +
+                                '<button type="button" class="btn btn-info btn-sm clusterkey-' + item.ID + '"' +
                                     '>Display</button>' +            
                                     
                             '</div>'; 
@@ -116,7 +116,7 @@
             } );
         }
 
-        //CREATE NEW APP ENTRY ON MODAL.
+        //CREATE NEW ENTRY ON MODAL.
         $('#add-cluster-form').submit( function(event) {
             event.preventDefault();
 
@@ -162,7 +162,7 @@
             });
             indexed_array.action = 'AddNewCluster';
 
-            // This will be handled by create-app.php.
+            // This will be handled by create.php.
             $.ajax({
                 dataType: 'json',
                 type: 'POST', 
@@ -208,8 +208,6 @@
         $('#AddNewCluster').on('show.bs.modal', function(e) {
             var data = e.relatedTarget.dataset;
             $('#add-cluster-btn').removeClass('disabled');
-            $('#appsta_create').val( 'Active' );
-            $('#appcap_create').val( 1000 );
         });
 
         // MAKE SURE THAT TIMEOUT IS CANCELLED.
@@ -226,7 +224,136 @@
         });
 
 
-        
+        //DELETE OR UPDATE FOCUSED ON MODAL.
+            $('#edit-cluster-form').submit( function(event) {
+                event.preventDefault();
+                var clickedBtnId = $(this).find("button[type=submit]:focus").attr('id');
+                $( "#dialog-confirm-edit" ).dialog({
+                    title: 'Confirmation',
+                    resizable: false,
+                    height: "auto",
+                    width: 320,
+                    modal: false,
+                    open: function() {
+                        $('#jquery-overlay').removeClass('usn-display-hide');
+                        $('#confirm-content-edit').html(
+                            '<span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>' +
+                            'Please confirm to complete the process, else just press cancel.'
+                        );
+                    },
+                    buttons: {
+                    "Confirm": function() 
+                    {
+                        confirmEditProcess( clickedBtnId );
+                        $('#jquery-overlay').addClass('usn-display-hide');
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() 
+                    {
+                        $('#jquery-overlay').addClass('usn-display-hide');
+                        $( this ).dialog( "close" );
+                    }
+                    }
+                });
+                
+            });
+
+            function confirmEditProcess( clickedBtnId )
+            {
+                $('#delete-cluster-btn').addClass('disabled');
+                $('#update-cluster-btn').addClass('disabled');
+
+                //From native form object to json object.
+                var postParam = {};
+
+                if( clickedBtnId == 'delete-cluster-btn' )
+                {
+                    postParam.action = 'DeleteThisCluster';
+                    postParam.cluster_id = $('#cluster_id_edit').val();
+                }
+
+                else
+                {
+                    postParam.action = 'UpdateThisCluster';
+                    postParam.cluster_id = $('#cluster_id_edit').val();
+                    postParam.cluster_name = $('#cluster_name_edit').val();
+                    postParam.cluster_info = $('#cluster_info_edit').val();
+                    postParam.cluster_hostname = $('#cluster_hostname_edit').val();
+                    postParam.cluster_capacity = $('#cluster_capacity_edit').val();
+                }
+
+                // This will be handled by create.php.
+                $.ajax({
+                    dataType: 'json',
+                    type: 'POST', 
+                    data: postParam,
+                    url: 'admin-ajax.php',
+                    success : function( data )
+                    {
+                        if( clickedBtnId == 'delete-cluster-btn' ) {
+                            $('#cluster_name_edit').val('');
+                            $('#cluster_info_edit').val('');
+                            $('#cluster_hostname_edit').val('');
+                            $('#cluster_capacity_edit').val('');
+                        } else {
+                            $('#delete-cluster-btn').removeClass('disabled');
+                            $('#update-cluster-btn').removeClass('disabled');
+                        }
+                        
+                        $('#DFAMessage').addClass('alert-success');
+                        $('#DFAMessage').removeClass('usn-display-hide');
+                        $('#DFAMcontent').text( data.message );
+
+                        loadingClusterList();
+                        activeTimeout = setTimeout( function() {
+                            $('#DFAMessage').removeClass('alert-success');
+                            $('#DFAMessage').addClass('usn-display-hide');
+                            if( clickedBtnId == 'delete-cluster-btn' ) {
+                                $('#EditClusterOption').modal('hide');
+                            }
+                            activeTimeout = undefined;
+                        }, 4000);
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        $('#DFAMessage').addClass('alert-danger');
+                        $('#DFAMessage').removeClass('usn-display-hide');
+                        $('#DFAMcontent').text( textStatus + ': Kindly consult to your administrator for this issue.' );
+
+                        $('#delete-cluster-btn').removeClass('disabled');
+                        $('#update-cluster-btn').removeClass('disabled');
+                        activeTimeout = setTimeout( function() {
+                            $('#DFAMessage').removeClass('alert-danger');
+                            $('#DFAMessage').addClass('usn-display-hide');
+                            activeTimeout = undefined;
+                        }, 7000);
+                        console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                    }
+                });
+            }
+
+            // LISTEN FOR MODAL SHOW AND ATTACHED ID.
+            $('#EditClusterOption').on('show.bs.modal', function(e) {
+                var data = e.relatedTarget.dataset;
+                $('#cluster_id_edit').val( data.cluster_id );
+                $('#cluster_name_edit').val( data.cluster_name );
+                $('#cluster_info_edit').val( data.cluster_info );
+                $('#cluster_hostname_edit').val( data.cluster_hostname );
+                $('#cluster_capacity_edit').val( data.cluster_capacity );
+
+                $('#delete-cluster-btn').removeClass('disabled');
+                $('#update-cluster-btn').removeClass('disabled');
+            });
+
+            // MAKE SURE THAT TIMEOUT IS CANCELLED.
+            $('#EditClusterOption').on('hide.bs.modal', function(e) {
+                if( activeTimeout != undefined ) {
+                    clearTimeout( activeTimeout );
+                }
+
+                if( !$('#DFAMessage').hasClass('usn-display-hide') ){
+                    $('#DFAMessage').addClass('usn-display-hide');
+                }
+            });
 
     });
 </script>

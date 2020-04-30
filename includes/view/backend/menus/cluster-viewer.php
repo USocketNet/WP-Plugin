@@ -30,6 +30,7 @@
 			Currently fetching updates for all available applications. Please wait...
 		</div>
 		<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/modal-create.php" ); ?>
+		<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/modal-edit.php" ); ?>
 		<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/datatables.php" ); ?>
 
 		<div class="usn-cluster-body container">

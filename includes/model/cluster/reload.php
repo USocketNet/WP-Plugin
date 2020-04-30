@@ -19,7 +19,7 @@
         global $wpdb;
         $clusterTab = USN_CLUSTER_TAB;
 
-        $clusterList = $wpdb->get_results( "SELECT bc_usn_clusters.ID, cluster_name, cluster_info, cluster_owner, cluster_hostname, cluster_secretkey, cluster_capacity, date_created, wp_users.user_login FROM $clusterTab, wp_users WHERE wp_users.ID = cluster_owner");
+        $clusterList = $wpdb->get_results( "SELECT $clusterTab.ID, cluster_name, cluster_info, cluster_owner, cluster_hostname, cluster_secretkey, cluster_capacity, date_created, wp_users.user_login FROM $clusterTab, wp_users WHERE wp_users.ID = cluster_owner");
 
         if( $clusterList !== FALSE ) {
             echo json_encode( array( 'status'=>'success', 'message'=> $clusterList ) );

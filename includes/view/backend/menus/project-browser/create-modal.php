@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label for="appcap_create">CAPACITY:</label>
                             <input required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                type="number" maxlength="4" class="form-control" id="appcap_create" name="appcap_create" placeholder="Max Users">
+                                type="number" maxlength="7" class="form-control" id="appcap_create" name="appcap_create" placeholder="1,000,000">
                         </div>
                         <div class="form-group">
                             <label for="appsta_create">STATUS:</label><br>

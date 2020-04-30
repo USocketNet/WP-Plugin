@@ -21,12 +21,12 @@
             if($wpdb->get_var( "SHOW TABLES LIKE '$usn_cluster_tab'" ) != $usn_cluster_tab) {
                 $sql = "CREATE TABLE `".$usn_cluster_tab."` (";
                     $sql .= "`ID` bigint(20) NOT NULL AUTO_INCREMENT, ";
-                    $sql .= "`cluster_name` varchar(49) NOT NULL, ";
-                    $sql .= "`cluster_info` bigint(20) NOT NULL, ";
-                    $sql .= "`cluster_owner` enum('Active','Inactive') NOT NULL DEFAULT 'Active', ";
+                    $sql .= "`cluster_name` varchar(120) NOT NULL, ";
+                    $sql .= "`cluster_info` varchar(255) NOT NULL, ";
+                    $sql .= "`cluster_owner` bigint(20) NOT NULL, ";
                     $sql .= "`cluster_hostname` varchar(120) NOT NULL, ";
-                    $sql .= "`cluster_secretkey` varchar(255) NOT NULL, ";
-                    $sql .= "`cluster_capacity` int(10) NOT NULL DEFAULT '1000', ";
+                    $sql .= "`cluster_secretkey` varchar(120) NOT NULL, ";
+                    $sql .= "`cluster_capacity` int(12) NOT NULL DEFAULT '1000', ";
                     $sql .= "`date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, ";
                     $sql .= "PRIMARY KEY (`ID`), ";
                     $sql .= "UNIQUE  (`cluster_name`) ";
@@ -41,7 +41,7 @@
         if($wpdb->get_var( "SHOW TABLES LIKE '$usn_project_tab'" ) != $usn_project_tab) {
             $sql = "CREATE TABLE `".$usn_project_tab."` (";
                 $sql .= "`ID` bigint(20) NOT NULL AUTO_INCREMENT, ";
-                $sql .= "`app_secret` varchar(49) NOT NULL, ";
+                $sql .= "`app_secret` varchar(120) NOT NULL, ";
                 $sql .= "`app_owner` bigint(20) NOT NULL, ";
                 $sql .= "`app_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active', ";
                 $sql .= "`app_name` varchar(120) NOT NULL, ";

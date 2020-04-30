@@ -21,7 +21,7 @@
             echo json_encode( 
                 array(
                     'status'=>'danger', 
-                    'message'=>'Project id is required during app deletion, contact your administrator.'
+                    'message'=>'Project id is required during project deletion, contact your administrator.'
                 ) 
             );
         }
