@@ -20,7 +20,7 @@
             add_menu_page('USocketNet', 'USocketNet', 'manage_options', 'usocketnet-getting_started', 
                 'usocketnet_gettingstarted_page_callback', plugin_dir_url( __FILE__ ).'../../../icon.png', 4 );
 
-            add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started', 
+            add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started - Demo', 
                 'manage_options', 'usocketnet-getting_started' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Cluster Viewer', 'Cluster Viewer',
@@ -29,13 +29,13 @@
             add_submenu_page('usocketnet-getting_started', 'USN Project Browser', 'Project Browser',
                 'manage_options', 'usocketnet-project_browser', 'usocketnet_project_browser_page_callback' );
 
-            add_submenu_page('usocketnet-getting_started', 'USN Active Match', 'Active Match',
+            add_submenu_page('usocketnet-getting_started', 'USN Active Match', 'Active Match - Demo',
                 'manage_options', 'usocketnet-active_match', 'usocketnet_active_match_page_callback' );
 
-            add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users',
+            add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users - Demo',
                'manage_options', 'usocketnet-online_users', 'usocketnet_onlineusers_page_callback' );
  
-             add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings',
+             add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings - Demo',
                 'manage_options', 'usocketnet-settings', 'usocketnet_setting_page_callback' );
         }
         add_action('admin_menu', 'usocketnet_init_admin_menu');
