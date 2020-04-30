@@ -38,11 +38,12 @@
         $checkUSNget = isset($_GET['page']);
         $checkUSNarr = array(
             'usocketnet-getting_started',
+            'usocketnet-cluster_viewer',
+            'usocketnet-project_browser',
+
             'usocketnet-online_users',
             'usocketnet-settings',
             'usocketnet-active_channels',
-            'usocketnet-applications',
-            'usocketnet-cluster_viewer',
         );
         
         if( $checkUSNget && in_array($_GET['page'], $checkUSNarr) )

@@ -24,16 +24,18 @@
                 'manage_options', 'usocketnet-getting_started' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Cluster Viewer', 'Cluster Viewer',
-              'manage_options', 'usocketnet-cluster_viewer', 'usocketnet_serverinstance_page_callback' );
+                'manage_options', 'usocketnet-cluster_viewer', 'usocketnet_cluster_viewer_page_callback' );
+
+            add_submenu_page('usocketnet-getting_started', 'USN Project Browser', 'Project Browser',
+                'manage_options', 'usocketnet-project_browser', 'usocketnet_project_browser_page_callback' );
+
+
 
             add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users',
                'manage_options', 'usocketnet-online_users', 'usocketnet_onlineusers_page_callback' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Active Channels', 'Active Channels',
                'manage_options', 'usocketnet-active_channels', 'usocketnet_activechannels_page_callback' );
-
-            add_submenu_page('usocketnet-getting_started', 'USN Applications', 'Applications',
-                'manage_options', 'usocketnet-applications', 'usocketnet_applications_page_callback' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings',
                'manage_options', 'usocketnet-settings', 'usocketnet_setting_page_callback' );
@@ -45,6 +47,18 @@
             include_once( plugin_dir_path( __FILE__ ) . '/menus/getting-started.php' );
         }
 
+        function usocketnet_cluster_viewer_page_callback()
+        {
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/cluster-viewer.php' );
+        }
+
+        function usocketnet_project_browser_page_callback()
+        {
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/project-browser.php' );
+        }
+
+
+
         function usocketnet_onlineusers_page_callback()
         {
             include_once( plugin_dir_path( __FILE__ ) . '/menus/online-users.php' );
@@ -53,16 +67,6 @@
         function usocketnet_activechannels_page_callback()
         {
             include_once( plugin_dir_path( __FILE__ ) . '/menus/active-channels.php' );
-        }
-
-        function usocketnet_applications_page_callback()
-        {
-            include_once( plugin_dir_path( __FILE__ ) . '/menus/applications.php' );
-        }
-
-        function usocketnet_serverinstance_page_callback()
-        {
-            include_once( plugin_dir_path( __FILE__ ) . '/menus/cluster-viewer.php' );
         }
 
         function usocketnet_setting_page_callback()
