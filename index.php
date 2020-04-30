@@ -83,5 +83,8 @@
 	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/reload.php' );
 	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/create.php' );
 	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/update.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/delete.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/delete.php' );
+    
+    //AJAX LISTENER for Projects
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/reload.php' );
 ?>

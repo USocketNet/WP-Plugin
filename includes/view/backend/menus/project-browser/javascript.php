@@ -3,22 +3,6 @@
     {
         //THIS ARE ALL THE PUBLIC VARIABLES.
         var activeTimeout = undefined;
-        
-        // First, compile all users from different games and server instance.
-        var usnusers = $('#usn-online-users').DataTable({
-            responsive: true,
-            "columnDefs": [
-                {"className": "dt-center", "targets": "_all"}
-            ],
-        });
-
-        usnusers.on( 'responsive-resize', function ( e, datatable, columns ) {
-            var count = columns.reduce( function (a,b) {
-                return b === false ? a+1 : a;
-            }, 0 );
-        
-            console.log( count +' column(s) are hidden' );
-        } );
 
         //#region Page = APPLICATION LIST 
             //GET THE REFERENCE OF THE CURRENT PAGE DATTABLES.
@@ -114,7 +98,7 @@
                 ];
 
                 //Displaying data on datatables.
-                var usnapps = $('#apps-datatables').DataTable({
+                usnapps = $('#apps-datatables').DataTable({
                     destroy: true,
                     searching: true,
                     buttons: ['copy', 'excel', 'print'],

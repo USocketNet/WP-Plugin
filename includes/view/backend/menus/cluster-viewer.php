@@ -22,12 +22,15 @@
     
 	<div class="usn-panel-body">
         <div class="usn-panel-first">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#CreateNewApp">Create New</button>
+			<button id="RefreshProjectList" type="button" class="btn btn-primary">Refresh List</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#CreateNewProject">Create New</button>
 		</div>
-		<table id="apps-datatables" class="stripe" style="width: 100%;"></table>
-		<div id="apps-notification" class="alert alert-info usn-center-item " role="alert" style="margin-top: 20px;">
+		<table id="project-datatables" class="stripe" style="width: 100%;"></table>
+		<div id="project-notification" class="alert alert-info usn-center-item " role="alert" style="margin-top: 20px;">
 			Currently fetching updates for all available applications. Please wait...
 		</div>
+		<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/datatables.php" ); ?>
+
 		<div class="usn-cluster-body container">
             <ul id="usn-cluster-viewer" class="row">
                 <?php //include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/_core.php" ); ?>

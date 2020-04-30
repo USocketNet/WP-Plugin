@@ -17,10 +17,10 @@
     function ReloadApps() 
     { 
         global $wpdb;
-        $appsTable = USN_APPTAB;
+        $appsTable = USN_PROJECT_TAB;
 
         //SELECT ALL ENTRY on bc_apps
-        $appList = $wpdb->get_results( "SELECT bc_usn_apps.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner");
+        $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner");
 
         if( $appList !== FALSE ) {
             echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );

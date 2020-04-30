@@ -35,7 +35,7 @@
         $appcap = $_POST['appcap_edit'];
 
         global $wpdb; //Reference to wp mysql conn.
-        $appsTable = USN_APPTAB;
+        $appsTable = USN_PROJECT_TAB;
 
         $updates = $wpdb->get_results( "UPDATE $appsTable SET app_name = '$appname', app_info = '$appdesc', app_website = '$appurl', app_status = '$appsta', max_connect = '$appcap' WHERE ID = '$appid'" );
 
