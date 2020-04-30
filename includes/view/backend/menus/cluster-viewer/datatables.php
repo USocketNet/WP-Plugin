@@ -78,12 +78,14 @@
                                     ' data-cluster_secretkey="' + item.cluster_secretkey + '"' +
                                     ' >Options</button>' +
 
-                                '<button type="button" class="btn btn-info btn-sm"' +
-                                    ' title="Clicking this will show realtime statistics and current state of the game."' + 
-                                    ' disabled>More</button>' +
-
                                 '<button type="button" class="btn btn-info btn-sm clusterkey-' + item.ID + '"' +
-                                    '>Display</button>' +            
+                                    '>Connect</button>' +     
+                                    
+                                '<button type="button" class="btn btn-dark btn-sm clusterkey-' + item.ID + '"' +
+                                    ' data-clipboard-text="' + item.cluster_secretkey + '"' +
+                                    ' onclick="copyFromId(\'clusterkey-' + item.ID + '\')" ' +
+                                    ' title="Click this button to copy the game apikey to your clipboard."' +
+                                    '>Copy Key</button>' +     
                                     
                             '</div>'; 
                     }
