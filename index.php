@@ -42,8 +42,9 @@
             'usocketnet-settings',
             'usocketnet-active_channels',
             'usocketnet-applications',
-            'usocketnet-server_instance',
+            'usocketnet-cluster_viewer',
         );
+        
         if( $checkUSNget && in_array($_GET['page'], $checkUSNarr) )
         {
             function usn_plugin_admin_enqueue()

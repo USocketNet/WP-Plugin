@@ -23,6 +23,9 @@
             add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started', 
                 'manage_options', 'usocketnet-getting_started' );
 
+            add_submenu_page('usocketnet-getting_started', 'USN Cluster Viewer', 'Cluster Viewer',
+              'manage_options', 'usocketnet-cluster_viewer', 'usocketnet_serverinstance_page_callback' );
+
             add_submenu_page('usocketnet-getting_started', 'USN Online Users', 'Online Users',
                'manage_options', 'usocketnet-online_users', 'usocketnet_onlineusers_page_callback' );
 
@@ -31,9 +34,6 @@
 
             add_submenu_page('usocketnet-getting_started', 'USN Applications', 'Applications',
                 'manage_options', 'usocketnet-applications', 'usocketnet_applications_page_callback' );
-
-            add_submenu_page('usocketnet-getting_started', 'USN Server Instance', 'Server Instance',
-              'manage_options', 'usocketnet-server_instance', 'usocketnet_serverinstance_page_callback' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Settings', 'Settings',
                'manage_options', 'usocketnet-settings', 'usocketnet_setting_page_callback' );
@@ -62,7 +62,7 @@
 
         function usocketnet_serverinstance_page_callback()
         {
-            include_once( plugin_dir_path( __FILE__ ) . '/menus/server-instance.php' );
+            include_once( plugin_dir_path( __FILE__ ) . '/menus/cluster-viewer.php' );
         }
 
         function usocketnet_setting_page_callback()

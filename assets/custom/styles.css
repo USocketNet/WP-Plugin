@@ -1,4 +1,6 @@
 
+/* bootstrap override */
+
 .usn-welcome-header {
     margin-top: 20px;
     margin-right: 20px;
@@ -39,13 +41,19 @@
     margin: 20px;
 }
 
-#usn-server-instance {
-    margin-top: 25px;
+/* CLUSTER VIEWER */
+#usn-cluster-viewer {
     background-color: #f4f4f4;
     height: auto;
+    width: -webkit-fill-available;
     display: inline-block;
-    box-shadow: 3px 3px #3d3d3d29;
+    box-shadow: 3px 3px #41414129;
 }
+
+.usn-cluster-body {
+    max-width: 100%;
+}
+
 
 .usn-instance-divs {
     position: relative;
