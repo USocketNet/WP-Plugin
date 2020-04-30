@@ -114,3 +114,21 @@ button[disabled] {
 .ui-selectmenu-menu .ui-menu { 
     max-height: 200px;
 }
+
+/* #refion Getting Started */
+.card {
+    text-align: center;
+}
+
+.card-img-top {
+    border-radius: 50%;
+    width: 50%;
+    margin: auto;
+    margin-top: 45px;
+}
+/* #endregion Getting Started */
+
+.usn-align-center {
+    text-align: center;
+    padding: 0 3rem;
+}

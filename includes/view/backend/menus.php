@@ -20,7 +20,7 @@
             add_menu_page('USocketNet', 'USocketNet', 'manage_options', 'usocketnet-getting_started', 
                 'usocketnet_gettingstarted_page_callback', plugin_dir_url( __FILE__ ).'../../../icon.png', 4 );
 
-            add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started - Demo', 
+            add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started', 
                 'manage_options', 'usocketnet-getting_started' );
 
             add_submenu_page('usocketnet-getting_started', 'USN Cluster Viewer', 'Cluster Viewer',

@@ -25,30 +25,27 @@
 			Microservice architecture, Load Balance, Realtime server and connection stats, and many more.
 		</p>
 		<hr>
+		<h5>
+			Short Description: Self-Host Realtime Bidirectional Event-Based Communication for your Game or Chat Application.
+		</h5>
 		<p style="font-size: 17px;">
-			The USocketNet is currently designed and developed for Unity Engine. It is a 
-			multi-platform that can be used through mobile or standalone computers. The 
-			developers advised the users to report any issues or bugs immediately to 
-			further improve our services. We are driven to develop more and add new 
-			powerful features. We are positively driven to improve more and add new 
-			powerful features.
+			The USocketNet is currently designed and developed for Unity Engine. It is a multi-platform by design 
+			that can be used through mobile, computers, or even web. We advised the developers to report any issues 
+			or bugs immediately to further fix and improve our code. We are driven to add new features that will 
+			make this project awesome for everyone.
 		</p>
-		<a class="btn btn-dark btn-lg" href="https://bytescrafter.net/projects/usocketnet" target="_blank" role="button">LEARN MORE</a>
+		<a class="btn btn-dark btn-lg" href="https://usocketnet.bytescrafter.net" target="_blank" role="button">LEARN MORE</a>
 	</div>
 
 	<div class="usn-content">
-		<h2 style="text-align: center;">Partner Technologies</h2>
+
+		<h4 style="text-align: center;">Made Possible by this Technologies</h4>
+		<p class="usn-align-center">
+			The USocketNet can be deploy on Google Cloud, Amazon AWS, etc. The operating system is preferably in a Linux environment, either Debian or centos as a production server. We will provide thorough documentation about the deployment of USocketNet in any possible way.
+		</p>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 card" style="width: 18rem;">
-					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-NodeJS.jpg" alt="USocketNet">
-					<div class="card-body">
-						<p class="card-text">
-							Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
-						</p>
-					</div>
-				</div>
-				<div class="col-md-3 card" style="width: 18rem;">
+				<div class="col-md-3 card">
 					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-Nginx.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
@@ -56,7 +53,15 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-md-3 card" style="width: 18rem;">
+				<div class="col-md-3 card">
+					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-NodeJS.jpg" alt="USocketNet">
+					<div class="card-body">
+						<p class="card-text">
+							Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 card">
 					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-WordPress.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
@@ -64,7 +69,7 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-md-3 card" style="width: 18rem;">
+				<div class="col-md-3 card">
 					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-Unity.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
