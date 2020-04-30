@@ -87,4 +87,5 @@
     
     //AJAX LISTENER for Projects
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/reload.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/create.php' );
 ?>

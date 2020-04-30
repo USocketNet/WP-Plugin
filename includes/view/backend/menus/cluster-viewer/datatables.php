@@ -1,7 +1,7 @@
 <script type="text/javascript">
     jQuery(document).ready( function ( $ ) 
     {
-        var usnprojects = 'undefined';
+        var usnprojects = undefined;
 
         //GET THE REFERENCE OF THE CURRENT PAGE DATTABLES.
         var clusterDatatables = $('#project-datatables');
@@ -9,16 +9,16 @@
         //SHOW NOTIFICATION THAT WE ARE CURRENTLY LOADING APPS.
 
         //SET INTERVAL DRAW UPDATE.
-        loadingAppList( clusterDatatables );
+        loadingClusterList();
         // setInterval( function()
         // { 
-        //     loadingAppList( clusterDatatables );
+        //     loadingClusterList( clusterDatatables);
         // }, 10000);
-        $('#RefreshProjectList').click(function() {
-            loadingAppList( clusterDatatables );
+        $('#ReloadClusterList').click(function() {
+            loadingClusterList();
         });
 
-        function loadingAppList( clusterDatatables )
+        function loadingClusterList()
         {
             if( clusterDatatables.length != 0 )
             {
@@ -27,7 +27,7 @@
                     $('#project-notification').removeClass('usn-display-hide');
                 }
                 
-                var appListAction = { action: 'ReloadProjects' };
+                var appListAction = { action: 'ReloadClusterList' };
                 $.ajax({
                     dataType: 'json',
                     type: 'POST', 
@@ -115,5 +115,118 @@
                 console.log( count +' column(s) are hidden' );
             } );
         }
+
+        //CREATE NEW APP ENTRY ON MODAL.
+        $('#add-cluster-form').submit( function(event) {
+            event.preventDefault();
+
+            $( "#dialog-confirm-create" ).dialog({
+                title: 'Confirmation',
+                resizable: false,
+                height: "auto",
+                width: 320,
+                modal: false,
+                open: function() {
+                    $('#jquery-overlay').removeClass('usn-display-hide');
+                    $('#confirm-content-create').html(
+                        '<span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>' +
+                        'Please confirm to complete the process, else just press cancel.'
+                    );
+                },
+                buttons: {
+                    "Confirm": function() 
+                    {
+                        confirmAddProcess();
+                        $('#jquery-overlay').addClass('usn-display-hide');
+                        $( this ).dialog( "close" );
+                    },
+                    Cancel: function() 
+                    {
+                        $('#jquery-overlay').addClass('usn-display-hide');
+                        $( this ).dialog( "close" );
+                    }
+                }
+            });
+        });
+
+        function confirmAddProcess()
+        {
+            $('#add-cluster-btn').addClass('disabled');
+
+            //From native form object to json object.
+            var unindexed_array = $('#add-cluster-form').serializeArray();
+            var indexed_array = {};
+
+            $.map(unindexed_array, function(n, i){
+                indexed_array[n['name']] = n['value'];
+            });
+            indexed_array.action = 'AddNewCluster';
+
+            // This will be handled by create-app.php.
+            $.ajax({
+                dataType: 'json',
+                type: 'POST', 
+                data: indexed_array,
+                url: 'admin-ajax.php',
+                success : function( data )
+                {
+                    if( data.status == 'success' ) {
+                        $('#cluster_name').val('');
+                        $('#cluster_info').val('');
+                        $('#cluster_hostname').val('');
+                        $('#cluster_capacity').val('');
+                    }
+                    $('#CNAMessage').addClass('alert-'+data.status);
+                    $('#CNAMessage').removeClass('usn-display-hide');
+                    $('#CNAMcontent').text( data.message );
+
+                    loadingClusterList();
+                   $('#add-cluster-btn').removeClass('disabled');
+                    activeTimeout = setTimeout( function() {
+                        $('#CNAMessage').removeClass('alert-'+data.status);
+                        $('#CNAMessage').addClass('usn-display-hide');
+                        activeTimeout = undefined;
+                    }, 4000);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    $('#CNAMessage').addClass('alert-danger');
+                    $('#CNAMessage').removeClass('usn-display-hide');
+                    $('#CNAMcontent').text( textStatus + ': Kindly consult to your administrator for this issue.' );
+
+                    $('#add-cluster-btn').removeClass('disabled');
+                    activeTimeout = setTimeout( function() {
+                        $('#CNAMessage').removeClass('alert-danger');
+                        $('#CNAMessage').addClass('usn-display-hide');
+                        activeTimeout = undefined;
+                    }, 7000);
+                    console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
+                }
+            });
+        }
+
+        // LISTEN FOR MODAL SHOW AND ATTACHED ID.
+        $('#AddNewCluster').on('show.bs.modal', function(e) {
+            var data = e.relatedTarget.dataset;
+            $('#add-cluster-btn').removeClass('disabled');
+            $('#appsta_create').val( 'Active' );
+            $('#appcap_create').val( 1000 );
+        });
+
+        // MAKE SURE THAT TIMEOUT IS CANCELLED.
+        $('#AddNewCluster').on('hide.bs.modal', function(e) {
+            if( activeTimeout != undefined )
+            {
+                clearTimeout( activeTimeout );
+            }
+
+            if( !$('#CNAMessage').hasClass('usn-display-hide') )
+            {
+                $('#CNAMessage').addClass('usn-display-hide');
+            }
+        });
+
+
+        
+
     });
 </script>

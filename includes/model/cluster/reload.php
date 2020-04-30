@@ -12,9 +12,9 @@
 
 <?php
 
-    add_action('wp_ajax_ReloadProjects', 'ReloadProjects');
-    add_action('wp_ajax_nopriv_ReloadProjects', 'ReloadProjects');
-    function ReloadProjects() 
+    add_action('wp_ajax_ReloadClusterList', 'ReloadClusterList');
+    add_action('wp_ajax_nopriv_ReloadClusterList', 'ReloadClusterList');
+    function ReloadClusterList() 
     { 
         global $wpdb;
         $clusterTab = USN_CLUSTER_TAB;

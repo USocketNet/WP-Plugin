@@ -5,7 +5,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title" style="text-align: center;">Modify Application</h4>
+                    <h4 class="modal-title" style="text-align: center;">Modify Project</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -13,12 +13,12 @@
                     <form id="edit-app-form">
                         <div class="form-group">
                             <label for="appname_edit">Name:</label>
-                            <input required type="text" class="form-control" id="appname_edit" name="appname_edit" placeholder="Public name of this application.">
+                            <input required type="text" class="form-control" id="appname_edit" name="appname_edit" placeholder="Public name of this Project.">
                         </div>
                         <div class="form-group">
                             <label for="appdesc_edit">Description:</label>
                             <textarea required type="text" class="form-control" id="appdesc_edit" name="appdesc_edit" rows="3"
-                                placeholder="Short description of your application." ></textarea>
+                                placeholder="Short description of your Project." ></textarea>
                         </div>
                         <div class="form-group">
                             <label for="appurl_edit">URL:</label>

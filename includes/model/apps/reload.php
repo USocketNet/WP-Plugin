@@ -25,7 +25,7 @@
         if( $appList !== FALSE ) {
             echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
         } else {
-            echo json_encode( array('status'=>'failed', 'message'=>'There was a problem on loading applications.') );
+            echo json_encode( array('status'=>'failed', 'message'=>'There was a problem on loading project.') );
         }
 
         wp_die();

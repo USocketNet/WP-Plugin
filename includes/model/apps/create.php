@@ -21,7 +21,7 @@
             echo json_encode( 
                 array(
                     'status'=>'danger',
-                    'message'=>'All inputs is required and neccesary for application to be created.'
+                    'message'=>'All inputs is required and neccesary for project to be created.'
                 ) 
             );
             wp_die();
@@ -43,10 +43,9 @@
             echo json_encode( 
                 array( 
                     'status'=>'danger',
-                    'message'=>'Name of the application already exist owned by: ' . $appCheck[0]->user_login
+                    'message'=>'Name of the project already exist owned by: ' . $appCheck[0]->user_login
                 ) 
             );
-            wp_die();
         }
 
         $generatedKey = wp_hash( wp_get_current_user()->ID . date("Y-m-d H:i:s u") );
@@ -65,14 +64,14 @@
             echo json_encode( 
                 array(
                     'status'=>'success',
-                    'message'=>'The application has been added successfully with appkey of: '.$generatedKey
+                    'message'=>'The project has been added successfully with appkey of: '.$generatedKey
                 ) 
             );
         } else {
             echo json_encode( 
                 array(
                     'status'=>'danger',
-                    'message'=>'There was a problem on saving this application. Try different value for the name.'
+                    'message'=>'There was a problem on saving this project. Try different value for the name.'
                 ) 
             );
         }

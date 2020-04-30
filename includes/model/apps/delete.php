@@ -21,10 +21,9 @@
             echo json_encode( 
                 array(
                     'status'=>'danger', 
-                    'message'=>'Application id is required during app deletion, contact your administrator.'
+                    'message'=>'Project id is required during app deletion, contact your administrator.'
                 ) 
             );
-            wp_die();
         }
 
         global $wpdb; //Reference to wp mysql conn.
@@ -33,9 +32,9 @@
         $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE ID = ".$_POST['appid_edit']);
 
         if( $rows !== FALSE ) {
-            echo json_encode( array('message'=>'The application has been removed successfully.') );
+            echo json_encode( array('message'=>'The project has been removed successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on deleting this application.') );
+            echo json_encode( array('message'=>'There was a problem on deleting this project.') );
         }
 
         wp_die();

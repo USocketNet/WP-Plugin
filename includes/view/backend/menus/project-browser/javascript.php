@@ -181,6 +181,7 @@
                             $('#appname_create').val('');
                             $('#appdesc_create').val('');
                             $('#appurl_create').val('');
+                            $('#appcap_create').val('');
                         }
                         $('#CNAMessage').addClass('alert-'+data.status);
                         $('#CNAMessage').removeClass('usn-display-hide');

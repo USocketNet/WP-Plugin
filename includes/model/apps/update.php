@@ -21,10 +21,9 @@
             echo json_encode( 
                 array(
                     'status'=>'danger', 
-                    'message'=>'All inputs is required and neccesary for application to be updated.'
+                    'message'=>'All inputs is required and neccesary for project to be updated.'
                 ) 
             );
-            wp_die();
         }
 
         $appid = $_POST['appid_edit'];
@@ -40,9 +39,9 @@
         $updates = $wpdb->get_results( "UPDATE $appsTable SET app_name = '$appname', app_info = '$appdesc', app_website = '$appurl', app_status = '$appsta', max_connect = '$appcap' WHERE ID = '$appid'" );
 
         if( $updates !== FALSE ) {
-            echo json_encode( array('message'=>'The application has been updated successfully.') );
+            echo json_encode( array('message'=>'The project has been updated successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on updating this application.') );
+            echo json_encode( array('message'=>'There was a problem on updating this project.') );
         }
 
         wp_die();

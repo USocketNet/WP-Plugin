@@ -1,40 +1,33 @@
-<div id="CreateNewApp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="AddNewCluster" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center" style="margin-top: 49px;">
 
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title" style="text-align: center;">Create Project</h4>
+                    <h4 class="modal-title" style="text-align: center;">Add Cluster</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <div class="modal-body">
-                    <form id="create-app-form">
+                    <form id="add-cluster-form">
                         <div class="form-group">
-                            <label for="appname_create">Name:</label>
-                            <input required type="text" class="form-control" id="appname_create" name="appname_create" placeholder="Public name of this Project.">
+                            <label for="cluster_name">Name:</label>
+                            <input required type="text" class="form-control" id="cluster_name" name="cluster_name" placeholder="Name of this cluster.">
                         </div>
                         <div class="form-group">
-                            <label for="appdesc_create">Description:</label>
-                            <textarea required type="text" class="form-control" id="appdesc_create" name="appdesc_create" rows="3"
-                                placeholder="Short description of your Project." ></textarea>
+                            <label for="cluster_info">Description:</label>
+                            <textarea required type="text" class="form-control" id="cluster_info" name="cluster_info" rows="3"
+                                placeholder="Short description of your cluster." ></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="appurl_create">URL:</label>
-                            <input required type="text" class="form-control" id="appurl_create" name="appurl_create" placeholder="http:/www.host.com/games/test">
+                            <label for="cluster_hostname">Hostname:</label>
+                            <input required type="text" class="form-control" id="cluster_hostname" name="cluster_hostname" placeholder="http:/www.hostname.com">
                         </div>
                         <div class="form-group">
-                            <label for="appcap_create">CAPACITY:</label>
+                            <label for="cluster_capacity">Capacity:</label>
                             <input required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                type="number" maxlength="4" class="form-control" id="appcap_create" name="appcap_create" placeholder="Max Users">
-                        </div>
-                        <div class="form-group">
-                            <label for="appsta_create">STATUS:</label><br>
-                            <select class="form-control" id="appsta_create" name="appsta_create">
-                                <option selected="selected">Active</option>
-                                <option>Inactive</option>
-                            </select>
+                                type="number" maxlength="4" class="form-control" id="cluster_capacity" name="cluster_capacity" placeholder="Max Users">
                         </div>
                         <div class="form-group">
                             <div class="alert alert-dark usn-center-item" role="alert">
@@ -43,7 +36,7 @@
                             </div>
                         </div>
                         <div class="usn-center-item">
-                            <button id="create-app-btn" type="submit" class="btn btn-success"> - SUBMIT - </button>
+                            <button id="add-cluster-btn" type="submit" class="btn btn-success"> - SUBMIT - </button>
                         </div>
                         <div id="dialog-confirm-create" title="Confirmation">
                             <p id="confirm-content-create"></p>
