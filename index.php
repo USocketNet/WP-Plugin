@@ -40,10 +40,9 @@
             'usocketnet-getting_started',
             'usocketnet-cluster_viewer',
             'usocketnet-project_browser',
-
+            'usocketnet-active_match',
             'usocketnet-online_users',
             'usocketnet-settings',
-            'usocketnet-active_channels',
         );
         
         if( $checkUSNget && in_array($_GET['page'], $checkUSNarr) )
