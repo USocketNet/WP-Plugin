@@ -43,6 +43,7 @@
                 $sql .= "`ID` bigint(20) NOT NULL AUTO_INCREMENT, ";
                 $sql .= "`app_secret` varchar(120) NOT NULL, ";
                 $sql .= "`app_owner` bigint(20) NOT NULL, ";
+                $sql .= "`app_parent` int(12) NOT NULL DEFAULT '0', ";
                 $sql .= "`app_status` enum('Active','Inactive') NOT NULL DEFAULT 'Active', ";
                 $sql .= "`app_name` varchar(120) NOT NULL, ";
                 $sql .= "`app_info` varchar(255) NOT NULL, ";
