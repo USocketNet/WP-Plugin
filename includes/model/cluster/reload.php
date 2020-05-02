@@ -24,9 +24,8 @@
         if( $clusterList !== FALSE ) {
             echo json_encode( array( 'status'=>'success', 'message'=> $clusterList ) );
         } else {
-            echo json_encode( array('status'=>'failed', 'message'=>'There was a problem on loading clusters.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on loading clusters.') );
         }
-
         wp_die();
     }
 

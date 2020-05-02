@@ -227,7 +227,6 @@
             }
         });
 
-
         //DELETE OR UPDATE FOCUSED ON MODAL.
             $('#edit-cluster-form').submit( function(event) {
                 event.preventDefault();
@@ -330,7 +329,7 @@
                             $('#DFAMessage').addClass('usn-display-hide');
                             activeTimeout = undefined;
                         }, 7000);
-                        console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                        console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                     }
                 });
             }

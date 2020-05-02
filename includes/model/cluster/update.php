@@ -24,6 +24,7 @@
                     'message'=>'All inputs is required and neccesary for cluster to be updated.'
                 ) 
             );
+            wp_die();
         }
 
         $cluster_id = $_POST['cluster_id'];
@@ -35,6 +36,18 @@
         global $wpdb; //Reference to wp mysql conn.
         $clusterTable = USN_CLUSTER_TAB;
 
+        $clusterCheckExist = $wpdb->get_results("SELECT cluster_owner, wp_users.user_login FROM $clusterTable, wp_users WHERE $clusterTable.ID != '$cluster_id' AND cluster_name = '$cluster_name'");
+        if( count($clusterCheckExist) >= 1 )
+        {
+            echo json_encode( 
+                array( 
+                    'status'=>'danger',
+                    'message'=>'Name of the cluster already exist owned by: ' . $clusterCheckExist[0]->user_login
+                ) 
+            );
+            wp_die();
+        }
+
         $updates = $wpdb->get_results( "UPDATE $clusterTable SET cluster_name = '$cluster_name', cluster_info = '$cluster_info', cluster_hostname = '$cluster_hostname', cluster_capacity = '$cluster_capacity', cluster_capacity = '$cluster_capacity' WHERE ID = '$cluster_id'" );
 
         if( $updates !== FALSE ) {
@@ -42,7 +55,6 @@
         } else {
             echo json_encode( array('message'=>'There was a problem on updating this cluster.') );
         }
-
         wp_die();
     }
 

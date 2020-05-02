@@ -24,6 +24,7 @@
                     'message'=>'Cluster id is required during cluster deletion, contact your administrator.'
                 ) 
             );
+            wp_die();
         }
 
         global $wpdb; //Reference to wp mysql conn.
@@ -36,7 +37,6 @@
         } else {
             echo json_encode( array('message'=>'There was a problem on deleting this cluster.') );
         }
-
         wp_die();
     }
 

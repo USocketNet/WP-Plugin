@@ -41,7 +41,7 @@
             echo json_encode( 
                 array( 
                     'status'=>'danger',
-                    'message'=>'Name of the application already exist owned by: ' . $clusterCheckExist[0]->user_login
+                    'message'=>'Name of the cluster already exist owned by: ' . $clusterCheckExist[0]->user_login
                 ) 
             );
             wp_die();
@@ -62,7 +62,7 @@
             echo json_encode( 
                 array(
                     'status'=>'success',
-                    'message'=>'The application has been added successfully with appkey of: '.$generatedKey
+                    'message'=>'The cluster has been added successfully with appkey of: '.$generatedKey
                 ) 
             );
         } else {
@@ -73,7 +73,6 @@
                 ) 
             );
         }
-
         wp_die();
     }
 
