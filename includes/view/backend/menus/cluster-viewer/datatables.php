@@ -109,7 +109,7 @@
         }
 
         //IMPLEMENT DATATABLES RESPONSIVENESS.
-        if( usnprojects != undefined)
+        if(typeof usnprojects !== 'undefined' && typeof usnprojects.on === 'function')
         {
             usnprojects.on( 'responsive-resize', function ( e, datatable, columns ) {
                 var count = columns.reduce( function (a,b) {
@@ -189,7 +189,7 @@
                     activeTimeout = setTimeout( function() {
                         $('#CNAMessage').removeClass('alert-'+data.status);
                         $('#CNAMessage').addClass('usn-display-hide');
-                        activeTimeout = undefined;
+                        activeTimeout = 'undefined';
                     }, 4000);
                 },
                 error : function(jqXHR, textStatus, errorThrown) {
@@ -201,7 +201,7 @@
                     activeTimeout = setTimeout( function() {
                         $('#CNAMessage').removeClass('alert-danger');
                         $('#CNAMessage').addClass('usn-display-hide');
-                        activeTimeout = undefined;
+                        activeTimeout = 'undefined';
                     }, 7000);
                     console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                 }
@@ -216,7 +216,7 @@
 
         // MAKE SURE THAT TIMEOUT IS CANCELLED.
         $('#AddNewCluster').on('hide.bs.modal', function(e) {
-            if( activeTimeout != undefined )
+            if( typeof activeTimeout !== 'undefined' )
             {
                 clearTimeout( activeTimeout );
             }
@@ -314,7 +314,7 @@
                             if( clickedBtnId == 'delete-cluster-btn' ) {
                                 $('#EditClusterOption').modal('hide');
                             }
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 4000);
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -327,7 +327,7 @@
                         activeTimeout = setTimeout( function() {
                             $('#DFAMessage').removeClass('alert-danger');
                             $('#DFAMessage').addClass('usn-display-hide');
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 7000);
                         console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                     }
@@ -349,7 +349,7 @@
 
             // MAKE SURE THAT TIMEOUT IS CANCELLED.
             $('#EditClusterOption').on('hide.bs.modal', function(e) {
-                if( activeTimeout != undefined ) {
+                if( typeof activeTimeout !== 'undefined' ) {
                     clearTimeout( activeTimeout );
                 }
 

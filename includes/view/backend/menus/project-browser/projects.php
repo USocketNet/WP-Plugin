@@ -2,7 +2,7 @@
     jQuery(document).ready( function ( $ ) 
     {
         //THIS ARE ALL THE PUBLIC VARIABLES.
-        var activeTimeout = undefined;
+        var activeTimeout = 'undefined';
 
         //#region Page = APPLICATION LIST 
             //GET THE REFERENCE OF THE CURRENT PAGE DATTABLES.
@@ -21,7 +21,7 @@
             });
         
             //LOAD APPLIST WITH AJAX.
-            var usnapps = undefined;
+            var usnapps = 'undefined';
             function loadingAppList( appDatatables )
             {
                 if( appDatatables.length != 0 )
@@ -115,7 +115,7 @@
             }
 
             //IMPLEMENT DATATABLES RESPONSIVENESS.
-            if( usnapps != undefined)
+            if(typeof usnapps !== 'undefined' && typeof usnapps.on === 'function')
             {
                 usnapps.on( 'responsive-resize', function ( e, datatable, columns ) {
                     var count = columns.reduce( function (a,b) {
@@ -195,7 +195,7 @@
                         activeTimeout = setTimeout( function() {
                             $('#CNAMessage').removeClass('alert-'+data.status);
                             $('#CNAMessage').addClass('usn-display-hide');
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 4000);
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -207,7 +207,7 @@
                         activeTimeout = setTimeout( function() {
                             $('#CNAMessage').removeClass('alert-danger');
                             $('#CNAMessage').addClass('usn-display-hide');
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 7000);
                         console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                     }
@@ -224,7 +224,7 @@
 
             // MAKE SURE THAT TIMEOUT IS CANCELLED.
             $('#CreateNewApp').on('hide.bs.modal', function(e) {
-                if( activeTimeout != undefined )
+                if( typeof activeTimeout !== 'undefined' )
                 {
                     clearTimeout( activeTimeout );
                 }
@@ -322,7 +322,7 @@
                             if( clickedBtnId == 'delete-app-btn' ) {
                                 $('#EditAppOption').modal('hide');
                             }
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 4000);
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -335,7 +335,7 @@
                         activeTimeout = setTimeout( function() {
                             $('#DFAMessage').removeClass('alert-danger');
                             $('#DFAMessage').addClass('usn-display-hide');
-                            activeTimeout = undefined;
+                            activeTimeout = 'undefined';
                         }, 7000);
                         console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
                     }
@@ -358,7 +358,7 @@
 
             // MAKE SURE THAT TIMEOUT IS CANCELLED.
             $('#EditAppOption').on('hide.bs.modal', function(e) {
-                if( activeTimeout != undefined ) {
+                if( typeof activeTimeout !== 'undefined' ) {
                     clearTimeout( activeTimeout );
                 }
 
