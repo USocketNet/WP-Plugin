@@ -134,7 +134,11 @@
                         for(var i=0; i<list.data.length; i++) {
                             chartz.updateChartView('cpu-'+list.data[i].pid, [list.data[i].cpu])
                             chartz.updateChartView('ram-'+list.data[i].pid, [list.data[i].ram])
-                            chartz.updateChartView('net-'+list.data[i].pid, [list.data[i].latency, list.data[i].latency_p95])
+                            if(typeof list.data[i].latency !== 'undefined' || typeof list.data[i].latency_p95 !== 'undefined') {
+                                chartz.updateChartView('net-'+list.data[i].pid, [list.data[i].latency, list.data[i].latency_p95])
+                            } else {
+                                chartz.updateChartView('net-'+list.data[i].pid, [0, 0])
+                            }
 
                             if(list.data[i].status == 'online') {
                                 if ( document.getElementById("stat-"+list.data[i].pid).classList.contains("status-red") ) {
