@@ -48,7 +48,7 @@ class USocketNet {
 
         if(typeof servType !== 'undefined' && typeof serverHost !== 'undefined' && typeof curUser !== 'undefined') {
             this.conn = io(
-                'ws://'+serverHost+':'+this.getServerTypePort(serverType), 
+                serverHost+':'+this.getServerTypePort(serverType), 
                 { 
                     autoConnect: false, //by setting this false, you have to call manager.open whenever you decide it’s appropriate.
                     reconnection: true, //whether to reconnect automatically.

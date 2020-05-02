@@ -68,7 +68,7 @@
 
                                 '<button type="button" class="btn btn-primary btn-sm"' +
                                     ' data-toggle="modal" data-target="#EditClusterOption"' +
-                                    ' title="Clicking this will show options for the game that can be modified."' +
+                                    ' title="Click this to modify or delete the cluster."' +
                                     ' data-cluster_id="' + item.ID + '"' +  
                                     ' data-cluster_name="' + item.cluster_name + '"' +  
                                     ' data-cluster_info="' + item.cluster_info + '"' +  
@@ -77,15 +77,17 @@
                                     ' data-cluster_capacity="' + item.cluster_capacity + '"' +
                                     ' data-cluster_secretkey="' + item.cluster_secretkey + '"' +
                                     ' >Options</button>' +
-
-                                '<button type="button" class="btn btn-info btn-sm clusterkey-' + item.ID + '"' +
-                                    '>Connect</button>' +     
                                     
-                                '<button type="button" class="btn btn-dark btn-sm clusterkey-' + item.ID + '"' +
+                                '<button type="button" class="btn btn-secondary btn-sm clusterkey-' + item.ID + '"' +
                                     ' data-clipboard-text="' + item.cluster_secretkey + '"' +
                                     ' onclick="copyFromId(\'clusterkey-' + item.ID + '\')" ' +
-                                    ' title="Click this button to copy the game apikey to your clipboard."' +
+                                    ' title="Click this to copy the cluster security key to your clipboard."' +
                                     '>Copy Key</button>' +     
+
+                                '<button type="button" class="btn btn-success btn-sm clusterhost-' + item.ID + '"' +
+                                    ' onclick="window.location.href = `<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']."&host="; ?>' + item.cluster_hostname + '`;" ' +
+                                    ' title="Click this to check all the instance of this cluster."' +
+                                    '>Connect</button>' +   
                                     
                             '</div>'; 
                     }

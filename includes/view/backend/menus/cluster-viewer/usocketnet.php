@@ -42,24 +42,19 @@
         }
 
     }
-
     const chartz = new USN_Stat();
 
-
-    const usn_server = 'localhost';
+    const usn_server = '<?php echo $_GET['host']; ?>';
     const authToken = { wpid: '<?php echo get_current_user_id(); ?>', snid: '<?php echo wp_get_session_token(); ?>' };
     const cluster = new USocketNet('cluster', usn_server, authToken);
-
         cluster.connect();
 
         cluster.on('connected', ( conn ) => {
-            console.log('Connected: ' + conn);
 
             cluster.requestSummaryStat( (list) => {
                 if(!list.success) {
                     return;
                 }
-                console.log('Summary: ' + list.data.length );
 
                 for( var i = 0; i < list.data.length; i++ ) {
                     var delta = list.data[i].uptime;
