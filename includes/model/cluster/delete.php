@@ -33,9 +33,9 @@
         $rows = $wpdb->get_results( "DELETE FROM $clusterTable WHERE ID = ".$_POST['cluster_id']);
 
         if( $rows !== FALSE ) {
-            echo json_encode( array('message'=>'The cluster has been removed successfully.') );
+            echo json_encode( array('status'=>'success', 'message'=>'The cluster had been removed successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on deleting this cluster.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on deleting this cluster.') );
         }
         wp_die();
     }

@@ -51,9 +51,9 @@
         $updates = $wpdb->get_results( "UPDATE $clusterTable SET cluster_name = '$cluster_name', cluster_info = '$cluster_info', cluster_hostname = '$cluster_hostname', cluster_capacity = '$cluster_capacity', cluster_capacity = '$cluster_capacity' WHERE ID = '$cluster_id'" );
 
         if( $updates !== FALSE ) {
-            echo json_encode( array('message'=>'The cluster has been updated successfully.') );
+            echo json_encode( array('status'=>'success', 'message'=>'The cluster has been updated successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on updating this cluster.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on updating this cluster.') );
         }
         wp_die();
     }

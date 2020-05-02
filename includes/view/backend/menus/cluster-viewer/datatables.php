@@ -303,13 +303,13 @@
                             $('#update-cluster-btn').removeClass('disabled');
                         }
                         
-                        $('#DFAMessage').addClass('alert-success');
+                        $('#DFAMessage').addClass('alert-'+data.status);
                         $('#DFAMessage').removeClass('usn-display-hide');
                         $('#DFAMcontent').text( data.message );
 
                         loadingClusterList();
                         activeTimeout = setTimeout( function() {
-                            $('#DFAMessage').removeClass('alert-success');
+                            $('#DFAMessage').removeClass('alert-'+data.status);
                             $('#DFAMessage').addClass('usn-display-hide');
                             if( clickedBtnId == 'delete-cluster-btn' ) {
                                 $('#EditClusterOption').modal('hide');
