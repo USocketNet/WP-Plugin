@@ -10,7 +10,7 @@
 ?>
 
 <?php
-	class BC_USN_ClusterQuery {
+	class BC_USN_ClusterVerify {
 
 		public static function initialize() {
 
