@@ -44,6 +44,7 @@
     }
     const chartz = new USN_Stat();
 
+    let totalProcess = 0;
     const usn_server = '<?php echo $_GET['host']; ?>';
     const authToken = { wpid: '<?php echo get_current_user_id(); ?>', snid: '<?php echo wp_get_session_token(); ?>' };
     const cluster = new USocketNet('cluster', usn_server, authToken);
@@ -55,6 +56,7 @@
                 if(!list.success) {
                     return;
                 }
+                totalProcess = list.data.length;
 
                 for( var i = 0; i < list.data.length; i++ ) {
                     var delta = list.data[i].uptime;
@@ -129,7 +131,12 @@
             
             setInterval(() => {
                 if( cluster.isConnected() ) {
+                    
                     cluster.requestSummaryStat( (list) => {
+
+                        if(totalProcess != list.data.length) {
+                            location.reload(); //refresh page.
+                        }
 
                         for(var i=0; i<list.data.length; i++) {
                             chartz.updateChartView('cpu-'+list.data[i].pid, [list.data[i].cpu])
