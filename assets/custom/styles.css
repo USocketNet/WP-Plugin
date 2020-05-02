@@ -43,11 +43,9 @@
 
 /* CLUSTER VIEWER */
 #usn-cluster-viewer {
-    background-color: #f4f4f4;
     height: auto;
     width: -webkit-fill-available;
     display: inline-block;
-    box-shadow: 3px 3px #41414129;
 }
 
 .usn-cluster-body {
@@ -70,8 +68,17 @@
     display: inline-block;
 }
 
-.usn-instance-info {
-    padding: 25px;
+.process-head {
+    text-align: center;
+    display: flow-root;
+}
+
+.process-info {
+    padding: 0 20px;
+    text-align: center;
+}
+
+.process-action {
     text-align: center;
 }
 
@@ -135,4 +142,33 @@ button[disabled] {
 
 .dataTables_wrapper {
     margin-bottom: 25px;
+}
+
+.process-single {
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+    box-shadow: 3px 3px #41414129;
+}
+
+.process-detail {
+    font-size: 16px;
+    line-height: 18px;
+    display: block;
+}
+
+.float-block-left {
+    float: left;
+    display: block;
+}
+.float-block-right {
+    float: right;
+    display: block;
+}
+
+.status-green {
+    color: green;
+}
+
+.status-red {
+    color: red;
 }

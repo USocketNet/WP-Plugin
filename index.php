@@ -52,6 +52,7 @@
                 wp_enqueue_script( 'usn_popper_script', plugin_dir_url( __FILE__ ) . 'assets/popper/popper.min.js' ); 
                 wp_enqueue_script( 'usn_clipboard_script', plugin_dir_url( __FILE__ ) . 'assets/clipboard/clipboard.min.js' );    
                 wp_enqueue_script( 'usn_chartjs_script', plugin_dir_url( __FILE__ ) . 'assets/chartjs/chart.min.js' );
+                wp_enqueue_script( 'usn_handlebars_script', plugin_dir_url( __FILE__ ) . 'assets/handlebars/handlebars.js' );
                 
                 wp_enqueue_style( 'usn_bootstrap_style', plugin_dir_url( __FILE__ ) . 'assets/bootstrap/css/bootstrap.min.css' );
                 wp_enqueue_script( 'usn_bootstrap_script', plugin_dir_url( __FILE__ ) . 'assets/bootstrap/js/bootstrap.min.js' );

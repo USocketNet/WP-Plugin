@@ -7,6 +7,8 @@ class USocketNet {
      */
     getServerTypePort(stype) {
         switch(stype) {
+            case 'cluster':
+                return '8080';
             case 'master':
                 return '19090';
             case 'message':
@@ -17,7 +19,6 @@ class USocketNet {
                 return '9090';
             default:
                 return 'undefined';
-                
         }
     }
 
@@ -150,7 +151,7 @@ class USocketNet {
             this.conn.emit( 'connects', this.getUser(), (res) => {
                 if(typeof this.prevConSid === 'undefined') {
                     this.prevConSid = this.conn.id;
-                    this.emit('svr-connect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                    this.emit('connected', { serverType: this.serverType, port: res, socketid: this.conn.id } );
                 }
             });
         });
@@ -159,6 +160,14 @@ class USocketNet {
             this.conn.on('pub', function( msg ) {
 
                 let cbs = cbList['msg-public'];
+                if(cbs) {
+                    cbs.forEach(cb => cb( { username: msg.u, sender: msg.s, message: msg.m, datestamp: msg.d } ))
+                }
+            });
+
+            this.conn.on('pri', function( msg ) {
+
+                let cbs = cbList['msg-private'];
                 if(cbs) {
                     cbs.forEach(cb => cb( { username: msg.u, sender: msg.s, message: msg.m, datestamp: msg.d } ))
                 }
@@ -193,6 +202,22 @@ class USocketNet {
             } else {
                 cback( { status: 'failed' } );
             }
+        });
+    }
+
+    privateMessage(msg, wpid, cback) {
+        this.conn.emit('pri', { m: msg, r: wpid }, (res) => {
+            if(res.status == 0) {
+                cback( { status: 'success', message: msg, datestamp: res.d } );
+            } else {
+                cback( { status: 'failed' } );
+            }
+        });
+    }
+
+    requestSummaryStat(cback) {
+        this.conn.emit('status_summary', ( reply ) => {
+            cback( reply );
         });
     }
 }
