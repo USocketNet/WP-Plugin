@@ -46,6 +46,7 @@
                     'message'=>'Name of the project already exist owned by: ' . $appCheck[0]->user_login
                 ) 
             );
+            wp_die();
         }
 
         $generatedKey = wp_hash( wp_get_current_user()->ID . date("Y-m-d H:i:s u") );
@@ -58,6 +59,12 @@
             'app_website' => $appurl,
             'max_connect' => $appcap,
         );
+
+        if(isset($_POST['app_parent'])) {
+            $parent_id = $_POST['app_parent'];
+            $data_array['app_parent'] = $parent_id;
+        }
+
         $result = $wpdb->insert($appsTable, $data_array, $format=NULL);
 
         if( $result !== FALSE ) {
@@ -75,7 +82,6 @@
                 ) 
             );
         }
-
         wp_die();
     }
 

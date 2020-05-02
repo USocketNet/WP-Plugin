@@ -12,22 +12,51 @@
 
 <?php
 
-    add_action('wp_ajax_ReloadApps', 'ReloadApps');
-    add_action('wp_ajax_nopriv_ReloadApps', 'ReloadApps');
-    function ReloadApps() 
+    add_action('wp_ajax_ReloadProjects', 'ReloadProjects');
+    add_action('wp_ajax_nopriv_ReloadProjects', 'ReloadProjects');
+    function ReloadProjects() 
     { 
         global $wpdb;
         $appsTable = USN_PROJECT_TAB;
 
         //SELECT ALL ENTRY on bc_apps
-        $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner");
+        $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner AND app_parent = 0");
 
         if( $appList !== FALSE ) {
             echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
         } else {
-            echo json_encode( array('status'=>'failed', 'message'=>'There was a problem on loading project.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on loading project.') );
         }
+        wp_die();
+    }
 
+    add_action('wp_ajax_ReloadVariants', 'ReloadVariants');
+    add_action('wp_ajax_nopriv_ReloadVariants', 'ReloadVariants');
+    function ReloadVariants() 
+    { 
+        if( !isset($_POST['app_parent']) )
+        {
+            echo json_encode( 
+                array(
+                    'status'=>'danger',
+                    'message'=>'Primary project of this variant cant be found!'
+                ) 
+            );
+            wp_die();
+        }
+        $parent = $_POST['app_parent'];
+
+        global $wpdb;
+        $appsTable = USN_PROJECT_TAB;
+
+        //SELECT ALL ENTRY on bc_apps
+        $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner AND app_parent = $parent");
+
+        if( $appList !== FALSE ) {
+            echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
+        } else {
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on loading project.') );
+        }
         wp_die();
     }
 

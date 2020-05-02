@@ -37,6 +37,7 @@
 			<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/datatables.php" ); ?>
 
 		<?php } else { ?>
+			
 			<div class="usn-panel-first">
 				<button type="button" class="btn btn-primary disabled" >Host Machine Info</button>
 				<button type="button" class="btn btn-danger" onclick="window.location.href = '<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']; ?>';" >Disconnect</button>

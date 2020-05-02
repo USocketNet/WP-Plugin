@@ -31,7 +31,10 @@
                         $('#apps-notification').removeClass('usn-display-hide');
                     }
                     
-                    var appListAction = { action: 'ReloadApps' };
+                    var appListAction = { 
+                        app_parent: '<?php echo $_GET['project']; ?>',
+                        action: 'ReloadVariants' 
+                    };
                     $.ajax({
                         dataType: 'json',
                         type: 'POST', 
@@ -73,7 +76,7 @@
 
                                     '<button type="button" class="btn btn-primary btn-sm"' +
                                         ' data-toggle="modal" data-target="#EditAppOption"' +
-                                        ' title="Clicking this will show options for the game that can be modified."' +
+                                        ' title="Click this to modified or delete this project."' +
                                         ' data-aid="' + item.ID + '"' +  
                                         ' data-aname="' + item.app_name + '"' +  
                                         ' data-ainfo="' + item.app_info + '"' +  
@@ -82,15 +85,18 @@
                                         ' data-acap="' + item.max_connect + '"' +
                                         ' >Options</button>' +
 
-                                    '<button type="button" class="btn btn-info btn-sm"' +
-                                        ' title="Clicking this will show realtime statistics and current state of the game."' + 
-                                        ' disabled>View Stats</button>' +
-
-                                    '<button type="button" class="btn btn-dark btn-sm appkey-' + item.ID + '"' +
+                                    '<button type="button" class="btn btn-secondary btn-sm appkey-' + item.ID + '"' +
                                         ' data-clipboard-text="' + item.app_secret + '"' +
                                         ' onclick="copyFromId(\'appkey-' + item.ID + '\')" ' +
-                                        ' title="Click this button to copy the game apikey to your clipboard."' +
-                                        '>Copy Key</button>' +            
+                                        ' title="Click this to copy the project apikey to your clipboard."' +
+                                        '>Copy Key</button>' +  
+
+                                    '<button type="button" class="btn btn-success btn-sm"' +
+                                        ' onclick="window.location.href = `<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']."&project="; ?>' + item.app_name + '`;" ' +
+                                        ' title="Click this to navigate to variant list of this project."' + 
+                                        ' disabled>More</button>' +
+
+                                             
                                         
                                 '</div>'; 
                         }
@@ -168,6 +174,7 @@
                     indexed_array[n['name']] = n['value'];
                 });
                 indexed_array.action = 'CreateNewApp';
+                indexed_array.app_parent = '<?php echo $_GET['project']; ?>';
 
                 // This will be handled by create-app.php.
                 $.ajax({
@@ -308,7 +315,11 @@
                             $('#update-app-btn').removeClass('disabled');
                         }
                         
-                        $('#DFAMessage').addClass('alert-success');
+                        if(data.status == 'danger') {
+                            $('#DFAMessage').addClass('alert-danger');
+                        } else {
+                            $('#DFAMessage').addClass('alert-success');
+                        }
                         $('#DFAMessage').removeClass('usn-display-hide');
                         $('#DFAMcontent').text( data.message );
 
@@ -334,7 +345,7 @@
                             $('#DFAMessage').addClass('usn-display-hide');
                             activeTimeout = undefined;
                         }, 7000);
-                        console.log("" + jqXHR + " :: " + textStatus + " :: " + errorThrown);
+                        console.log("" + JSON.stringify(jqXHR) + " :: " + textStatus + " :: " + errorThrown);
                     }
                 });
             }
