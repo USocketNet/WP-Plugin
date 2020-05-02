@@ -60,6 +60,7 @@
             'max_connect' => $appcap,
         );
 
+        //Check on variant area only.
         if(isset($_POST['app_parent'])) {
             $parent_id = $_POST['app_parent'];
             $data_array['app_parent'] = $parent_id;

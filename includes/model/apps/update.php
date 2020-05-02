@@ -37,7 +37,7 @@
         global $wpdb; //Reference to wp mysql conn.
         $appsTable = USN_PROJECT_TAB;
 
-        $appCheck = $wpdb->get_results("SELECT app_owner, wp_users.user_login FROM $appsTable, wp_users WHERE ID != '$appid' AND app_name = '$appname'");
+        $appCheck = $wpdb->get_results("SELECT app_owner, wp_users.user_login FROM $appsTable, wp_users WHERE $appsTable.ID != '$appid' AND app_name = '$appname'");
         if( count($appCheck) >= 1 )
         {
             echo json_encode( 
@@ -51,9 +51,9 @@
 
         $updates = $wpdb->get_results( "UPDATE $appsTable SET app_name = '$appname', app_info = '$appdesc', app_website = '$appurl', app_status = '$appsta', max_connect = '$appcap' WHERE ID = '$appid'" );
         if( $updates !== FALSE ) {
-            echo json_encode( array('message'=>'The project has been updated successfully.') );
+            echo json_encode( array('status'=>'success', 'message'=>'The project has been updated successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on updating this project.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on updating this project.') );
         }
         wp_die();
     }

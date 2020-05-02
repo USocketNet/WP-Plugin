@@ -23,7 +23,7 @@
         $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner AND app_parent = 0");
 
         if( $appList !== FALSE ) {
-            echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
+            echo json_encode( array('status'=>'success', 'message'=> $appList ) );
         } else {
             echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on loading project.') );
         }
@@ -53,7 +53,7 @@
         $appList = $wpdb->get_results( "SELECT $appsTable.ID, app_owner, app_secret, app_status, app_name, app_info, app_website, max_connect, date_created, wp_users.user_login FROM $appsTable, wp_users WHERE wp_users.ID = app_owner AND app_parent = $parent");
 
         if( $appList !== FALSE ) {
-            echo json_encode( array( 'status'=>'success', 'message'=> $appList ) );
+            echo json_encode( array('status'=>'success', 'message'=> $appList ) );
         } else {
             echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on loading project.') );
         }

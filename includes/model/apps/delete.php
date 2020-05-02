@@ -38,7 +38,7 @@
             echo json_encode( 
                 array( 
                     'status'=>'danger',
-                    'message'=>'This project contains total variant of ' . count($app_variants) . ' owned by '.$app_variants[0]->user_login.', etc.'
+                    'message'=>'This project contains active variants owned by '.$app_variants[0]->user_login.', etc.'
                 ) 
             );
             wp_die();
@@ -47,9 +47,9 @@
         $rows = $wpdb->get_results( "DELETE FROM $appsTable WHERE ID = ".$_POST['appid_edit']);
 
         if( $rows !== FALSE ) {
-            echo json_encode( array('message'=>'The project has been removed successfully.') );
+            echo json_encode( array('status'=>'success', 'message'=>'The project has been removed successfully.') );
         } else {
-            echo json_encode( array('message'=>'There was a problem on deleting this project.') );
+            echo json_encode( array('status'=>'danger', 'message'=>'There was a problem on deleting this project.') );
         }
         wp_die();
     }

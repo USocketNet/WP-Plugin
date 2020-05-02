@@ -174,8 +174,9 @@
                     indexed_array[n['name']] = n['value'];
                 });
                 indexed_array.action = 'CreateNewApp';
+                <?php if(isset($_GET['project'])) {?>
                 indexed_array.app_parent = '<?php echo $_GET['project']; ?>';
-
+                <?php } ?>
                 // This will be handled by create-app.php.
                 $.ajax({
                     dataType: 'json',
@@ -297,7 +298,9 @@
                     postParam.appurl_edit = $('#appurl_edit').val();
                     postParam.appcap_edit = $('#appcap_edit').val();
                 }
-
+                <?php if(isset($_GET['project'])) {?>
+                postParam.app_parent = '<?php echo $_GET['project']; ?>';
+                <?php } ?>
                 // This will be handled by create-app.php.
                 $.ajax({
                     dataType: 'json',
