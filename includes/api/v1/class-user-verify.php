@@ -63,7 +63,7 @@
 				return rest_ensure_response( 
 					array(
 						"status" => "success",
-						"user" => array(
+						"data" => array(
 							"uname" => $wp_user->data->user_nicename,
 							"dname" => $wp_user->data->display_name
 						)

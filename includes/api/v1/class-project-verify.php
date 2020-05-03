@@ -68,7 +68,7 @@
 					return rest_ensure_response( 
 						array(
 							"status" => "success",
-							"app" => array(
+							"data" => array(
 								"name" => $checkName[0]->app_name,
 								"desc" => $checkName[0]->app_info,
 								"url" => $checkName[0]->app_website,

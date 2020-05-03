@@ -38,7 +38,7 @@
 			global $wpdb; //Reference to wp mysql conn.
             $clusterTable = USN_CLUSTER_TAB;
 
-            $clusterCheck = $wpdb->get_results("SELECT cluster_name, cluster_capacity, wp_users.user_login FROM $clusterTable, wp_users WHERE cluster_secretkey = '$securekey'");
+            $clusterCheck = $wpdb->get_results("SELECT cluster_name, cluster_info, cluster_capacity FROM $clusterTable WHERE cluster_secretkey = '$securekey'");
 
 
             if( count($clusterCheck) >= 1 ) {

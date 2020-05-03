@@ -77,7 +77,7 @@
 				return rest_ensure_response( 
 					array(
 						"status" => "success",
-						"cluster" => $newClusterList
+						"data" => $newClusterList
 					)
 				);			
 			} else {

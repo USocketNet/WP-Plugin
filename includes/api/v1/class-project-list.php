@@ -65,7 +65,7 @@
 				return rest_ensure_response( 
 					array(
 						"status" => "success",
-						"apps" => $applist,
+						"data" => $applist,
 					)
 				);
 			} else {

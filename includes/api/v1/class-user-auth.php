@@ -42,7 +42,7 @@
 			if (!isset($_POST["UN"]) || !isset($_POST["PW"])) {
 				return rest_ensure_response( 
 					array(
-						"code" => "unknown",
+						"status" => "unknown",
 						"message" => "Please contact your administrator. Authentication Unknown!",
 					)
 				);
@@ -59,7 +59,7 @@
 			if ( is_wp_error($user) ) {
 				return rest_ensure_response( 
 					array(
-						"code" => "error",
+						"status" => "error",
 						"message" => $user->get_error_message(),
 					)
 				);
@@ -67,8 +67,7 @@
 	
 			return rest_ensure_response( 
 				array(
-					"code" => "success",
-					"message" => "<strong>Success</strong>: Welcome to USocketNet RestAPI.",
+					"status" => "success",
 					"data" => array(
 						"snid" => BC_USN_Authenticate::bc_usn_get_session($user->ID), 
 						"wpid" => $user->ID,
