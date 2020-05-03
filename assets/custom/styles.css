@@ -180,3 +180,7 @@ button[disabled] {
     padding: 7px 15px;
     margin: 0;
 }
+
+.flex-column {
+    margin: 12px 25px;
+}

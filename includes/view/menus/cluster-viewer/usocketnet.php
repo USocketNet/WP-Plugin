@@ -20,7 +20,50 @@
 ?>
 
 <script type="text/javascript">
-    
+
+    function uptimeObject( uptimeInt ) {
+        var delta = uptimeInt;
+
+        // calculate (and subtract) whole days
+        var days = Math.floor(delta / 86400);
+        // delta -= days * 86400;
+
+        // calculate (and subtract) whole hours
+        var hours = Math.floor(delta / 3600) % 24;
+        // delta -= hours * 3600;
+
+        // calculate (and subtract) whole minutes
+        var minutes = Math.floor(delta / 60) % 60;
+        // delta -= minutes * 60;
+
+        // what's left is seconds
+        var seconds = Math.floor(delta % 60); 
+
+        return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds
+        };
+    }
+
+    function getUptimeString(uptimeObject) {
+        let display = '';
+        if(uptimeObject.days > 0) {
+            display += uptimeObject.days + " days "; 
+        }
+        if(uptimeObject.hours > 0) {
+            display += uptimeObject.hours + " hrs "; 
+        }
+        if(uptimeObject.minutes > 0) {
+            display += uptimeObject.minutes + " min "; 
+        }
+        if(uptimeObject.seconds > 0) {
+            display += uptimeObject.seconds + " sec "; 
+        }
+        return display; 
+    }
+
     class USN_Stat {
         construct () {
             
@@ -71,7 +114,18 @@
     const cluster = new USocketNet('cluster', usn_server, authToken);
         cluster.connect();
 
-        cluster.on('connected', ( conn ) => {
+        cluster.on('connected', ( hostReturn ) => {
+            //Enable host info button.
+            let hostInfoBtn = document.getElementById("host-info-btn");
+            hostInfoBtn.classList.remove("disabled");
+
+            let hostData = hostReturn.data.data;
+            document.getElementById('host-name').innerHTML = hostData.hostname;
+            document.getElementById('host-system').innerHTML = hostData.system;
+            document.getElementById('host-arch').innerHTML = hostData.arch;
+            document.getElementById('host-processor').innerHTML = hostData.cpu;
+            document.getElementById('host-memory').innerHTML = Math.floor(hostData.total_mem / 1000 / 1000 / 1000) + ' GB';
+            document.getElementById('host-uptime').innerHTML = getUptimeString( uptimeObject(hostData.uptime) );
 
             cluster.requestSummaryStat( (list) => {
                 if(!list.success) {
@@ -79,30 +133,9 @@
                 }
                 totalProcess = list.data.length;
 
+                //Forloop array and return time object.
                 for( var i = 0; i < list.data.length; i++ ) {
-                    var delta = list.data[i].uptime;
-
-                    // calculate (and subtract) whole days
-                    var days = Math.floor(delta / 86400);
-                    // delta -= days * 86400;
-
-                    // calculate (and subtract) whole hours
-                    var hours = Math.floor(delta / 3600) % 24;
-                    // delta -= hours * 3600;
-
-                    // calculate (and subtract) whole minutes
-                    var minutes = Math.floor(delta / 60) % 60;
-                    // delta -= minutes * 60;
-
-                    // what's left is seconds
-                    var seconds = Math.floor(delta % 60); 
-
-                    list.data[i].uptime = {
-                        days: days,
-                        hours: hours,
-                        minutes: minutes,
-                        seconds: seconds
-                    };
+                    list.data[i].uptime = uptimeObject(list.data[i].uptime);
                 }
 
                 //Get child template.
@@ -198,20 +231,7 @@
         });
 
     Handlebars.registerHelper("uptimeDisplay", (uptime) => {
-        let display = "";
-        if(uptime.days > 0) {
-            display += uptime.days + " days "; 
-        }
-        if(uptime.hours > 0) {
-            display += uptime.hours + " hrs "; 
-        }
-        if(uptime.minutes > 0) {
-            display += uptime.minutes + " min "; 
-        }
-        if(uptime.seconds > 0) {
-            display += uptime.seconds + " sec "; 
-        }
-        return display;
+        return getUptimeString(uptime);
     });
 
     Handlebars.registerHelper("processStatus", (pid, status) => {

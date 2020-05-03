@@ -38,7 +38,7 @@
 			</div>
 			<table id="project-datatables" class="stripe" style="width: 100%;"></table>
 			<div id="project-notification" class="alert alert-info usn-center-item " role="alert" style="margin-top: 20px;">
-				Currently fetching updates for all available applications. Please wait...
+				Currently fetching updates for all available clusters. Please wait...
 			</div>
 			<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/modals/create.php" ); ?>
 			<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/modals/edit.php" ); ?>
@@ -47,7 +47,7 @@
 		<?php } else { ?>
 			
 			<div class="usn-panel-first">
-				<button type="button" class="btn btn-primary disabled" >Host Machine Info</button>
+				<button id="host-info-btn" type="button" class="btn btn-primary disabled" data-toggle="modal" data-target="#ShowMachineInfo">Host Machine Info</button>
 				<button type="button" class="btn btn-danger" onclick="window.location.href = '<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']; ?>';" >Disconnect</button>
 			</div>
 
@@ -111,6 +111,7 @@
 					</script>
 				</ul>
 			</div>
+			<?php include_once( plugin_dir_path( __FILE__ ) . "/cluster-viewer/modals/host.php" ); ?>
 
 		<?php } ?>
 	</div>

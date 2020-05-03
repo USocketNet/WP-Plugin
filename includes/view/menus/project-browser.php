@@ -55,7 +55,7 @@
 			</div>
 			<table id="apps-datatables" class="stripe" style="width: 100%;"></table>
 			<div id="apps-notification" class="alert alert-info usn-center-item " role="alert" style="margin-top: 20px;">
-				Currently fetching updates for all available applications. Please wait...
+				Currently fetching updates for all available projects. Please wait...
 			</div>
 		</div>
 		<?php include_once( plugin_dir_path( __FILE__ ) . "/project-browser/variants.php" ); ?>

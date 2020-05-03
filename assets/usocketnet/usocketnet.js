@@ -59,15 +59,14 @@ class USocketNet {
                     transports: ['websocket', 'polling'], //a list of transports to try (in order). Engine always attempts to connect directly with the first one.
                     query: {
                         wpid: curUser.wpid,
-                        snid: curUser.snid,
-                        apid: curUser.apid
+                        snid: curUser.snid
                     }
                 }
             ); 
 
             this.conn.on('reconnect', (attemptNumber) => {
                 this.conn.emit( 'connects', curUser, (res) => {
-                    this.emit('svr-reconnect', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                    this.emit('svr-reconnect', { serverType: this.serverType, data: res, socketid: this.conn.id } );
                 });
             });
     
@@ -151,7 +150,7 @@ class USocketNet {
             this.conn.emit( 'connects', this.getUser(), (res) => {
                 if(typeof this.prevConSid === 'undefined') {
                     this.prevConSid = this.conn.id;
-                    this.emit('connected', { serverType: this.serverType, port: res, socketid: this.conn.id } );
+                    this.emit('connected', { serverType: this.serverType, data: res, socketid: this.conn.id } );
                 }
             });
         });
