@@ -28,71 +28,23 @@
         }
     #endregion
 
-    // Global as Plugin URL of USocketNet.
-	DEFINE('USN_PLUGIN', plugin_dir_url( __FILE__ ));
-
-    
+    //Important config files and plugin updates.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/config.php' );
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/update.php' );
 
     //Make sure to create required mysql tables.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/hook.php' );
 
-    #region Include assets like scripts, styles, etc.
-        $checkUSNget = isset($_GET['page']);
-        $checkUSNarr = array(
-            'usocketnet-getting_started',
-            'usocketnet-cluster_viewer',
-            'usocketnet-project_browser',
-            'usocketnet-active_match',
-            'usocketnet-online_users',
-            'usocketnet-settings',
-        );
-        
-        if( $checkUSNget && in_array($_GET['page'], $checkUSNarr) )
-        {
-            function usn_plugin_admin_enqueue()
-            {    
-                wp_enqueue_script( 'usn_popper_script', plugin_dir_url( __FILE__ ) . 'assets/popper/popper.min.js' ); 
-                wp_enqueue_script( 'usn_clipboard_script', plugin_dir_url( __FILE__ ) . 'assets/clipboard/clipboard.min.js' );    
-                wp_enqueue_script( 'usn_chartjs_script', plugin_dir_url( __FILE__ ) . 'assets/chartjs/chart.min.js' );
-                wp_enqueue_script( 'usn_handlebars_script', plugin_dir_url( __FILE__ ) . 'assets/handlebars/handlebars.js' );
-                
-                wp_enqueue_style( 'usn_bootstrap_style', plugin_dir_url( __FILE__ ) . 'assets/bootstrap/css/bootstrap.min.css' );
-                wp_enqueue_script( 'usn_bootstrap_script', plugin_dir_url( __FILE__ ) . 'assets/bootstrap/js/bootstrap.min.js' );
-
-                wp_enqueue_style( 'usn_datatables_style', plugin_dir_url( __FILE__ ) . 'assets/datatables/datatables.min.css' );
-                wp_enqueue_script( 'usn_datatables_script', plugin_dir_url( __FILE__ ) . 'assets/datatables/datatables.min.js' );
-
-                wp_enqueue_style( 'usn_jqueryui_style', plugin_dir_url( __FILE__ ) . 'assets/jquery-ui/jquery-ui.min.css' );
-                wp_enqueue_script( 'usn_jqueryui_script', plugin_dir_url( __FILE__ ) . 'assets/jquery-ui/jquery-ui.min.js' );
-
-                wp_enqueue_script( 'usn_socketio_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/socket.io.js' ); 
-                wp_enqueue_script( 'usn_core_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/usocketnet.js' ); 
-
-                wp_enqueue_style( 'usn_admin_style', plugin_dir_url( __FILE__ ) . 'assets/custom/styles.css' );
-                wp_enqueue_script( 'usn_admin_script', plugin_dir_url( __FILE__ ) . 'assets/usocketnet/backend.js', array('jquery'), '1.0', true );
-                wp_localize_script( 'usn_admin_script', 'ajaxurl', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-            }
-            add_action( 'admin_enqueue_scripts', 'usn_plugin_admin_enqueue' );
-        }
-    #endregion
+    //Includes assets if page is defined.
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/core/assets.php' );
 
     //Include the REST API of USocketNet to be accessible.
     include_once ( plugin_dir_path( __FILE__ ) . '/includes/api/routes.php' );
 
     //Display menu on WP Backend.
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/view/backend/menus.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/view/menus.php' );
 
-	//AJAX LISTENER for Apps
-	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/reload.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/create.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/update.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/apps/delete.php' );
-    
-    //AJAX LISTENER for Projects
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/reload.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/create.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/update.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/cluster/delete.php' );
+    //Include post ajax listener.
+    include_once ( plugin_dir_path( __FILE__ ) . '/includes/model/post-ajax.php' );
+
 ?>

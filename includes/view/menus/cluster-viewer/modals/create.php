@@ -1,3 +1,24 @@
+
+<?php
+	// Exit if accessed directly
+	if ( ! defined( 'ABSPATH' ) ) 
+	{
+		exit;
+	}
+
+	/** 
+		* @package bytescrafter-usocketnet-restapi
+		* Name: USocketNet RestAPI
+		* Description: Self-Host Realtime Multiplayer Server 
+		*       for your Game or Chat Application.
+		* Package-Website: https://usocketnet.bytescrafter.net
+		* 
+		* Author: Bytes Crafter
+		* Author-Website:: https://www.bytescrafter.net/about-us
+		* License: Copyright (C) Bytes Crafter - All rights Reserved. 
+	*/
+?>
+
 <div id="AddNewCluster" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center" style="margin-top: 49px;">

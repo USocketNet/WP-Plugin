@@ -6,17 +6,25 @@
 		exit;
 	}
 
-	/**
-	 * @package bytescsrafter-usocketnet
+	/** 
+		* @package bytescrafter-usocketnet-restapi
+		* Name: USocketNet RestAPI
+		* Description: Self-Host Realtime Multiplayer Server 
+		*       for your Game or Chat Application.
+		* Package-Website: https://usocketnet.bytescrafter.net
+		* 
+		* Author: Bytes Crafter
+		* Author-Website:: https://www.bytescrafter.net/about-us
+		* License: Copyright (C) Bytes Crafter - All rights Reserved. 
 	*/
 ?>
 
 	<?php /* Header Section */ ?>
 		<div class="usn-welcome-header">
-			<h1>ACTIVE CHANNELS</h1>
+			<h1>ONLINE USERS</h1>
 			<p>
-                Channels are simply a game room or chat container where users 
-                subcriptions allows them to send and received events.
+				Users that are currently connected to any of your<br>
+				server instance will be shown below.
 			</p>
 		</div>
 	<?php /* Header Section */ ?>
@@ -26,12 +34,12 @@
 			<thead>
 				<tr>
 					<th>IDENTITY</th>
-					<th>INSTANCE</th>
-					<th>GAME</th>
-					<th>VARIANT</th>
-					<th>CURRENT</th>
-					<th>CAPACITY</th>
-					<th>EXISTENCE</th>
+					<th>USERNAME</th>
+					<th>IP ADDRESS</th>
+					<th>SERVER</th>
+					<th>PLAYING</th>
+					<th>SPENT TIME</th>
+					<th>LAST LOGIN</th>
 					<th>ACTION</th>
 				</tr>
 			</thead>
@@ -40,16 +48,16 @@
 				<?php for( $int = 0; $int < 49; $int++ ) { ?>
 					<tr>
 						<td>ID#<?php echo $int; ?></td>
+						<td>Username<?php echo $int; ?></td>
+						<td>192.168.1.<?php echo $int; ?></td>
 						<td>
 							<a href="#">Server#<?php echo rand(1000, 9000); ?></a>
 						</td>
 						<td>
 							<a href="#">Game Title</a>
 						</td>
-                        <td>Default<?php echo $int; ?></td>
-                        <td><?php echo rand(1, 1000).' users'; ?></td>
-                        <td>1000 cap</td>
 						<td><?php echo $int; ?>min, <?php echo rand(1, 59); ?> sec</td>
+						<td><?php echo date('Y-m-d H:i:s'); ?></td>
 						<td>
 							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#USNBrowse">Browse</button>
 							<button type="button" class="btn btn-danger">Debug</button>
