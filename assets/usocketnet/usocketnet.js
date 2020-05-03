@@ -219,4 +219,10 @@ class USocketNet {
             cback( reply );
         });
     }
+
+    restartProcess(pid, cback) {
+        this.conn.emit('process_restart', pid, ( reply ) => {
+            cback( reply );
+        });
+    }
 }

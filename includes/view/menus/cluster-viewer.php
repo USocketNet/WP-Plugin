@@ -92,7 +92,7 @@
 												{{#ifEquals status "online"}}
 												<button type="button" class="btn btn-danger disabled">Stop</button>
 												<button type="button" class="btn btn-info disabled">Logs</button>
-												<button type="button" class="btn btn-warning disabled">Restart</button>
+												<button type="button" class="btn btn-warning disabled" onclick="restartPid({{pid}})">Restart</button>
 												{{/ifEquals}}
 												{{#ifEquals status "stopped"}}
 												<button type="button" class="btn btn-success disabled">Start</button>

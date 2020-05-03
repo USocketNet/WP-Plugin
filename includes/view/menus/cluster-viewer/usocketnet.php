@@ -118,7 +118,6 @@
             //Enable host info button.
             let hostInfoBtn = document.getElementById("host-info-btn");
             hostInfoBtn.classList.remove("disabled");
-
             let hostData = hostReturn.data.data;
             document.getElementById('host-name').innerHTML = hostData.hostname;
             document.getElementById('host-system').innerHTML = hostData.system;
@@ -200,6 +199,7 @@
                             } else {
                                 chartz.updateChartView('net-'+list.data[i].pid, [0, 0])
                             }
+                            document.getElementById('uptime-'+list.data[i].pid).innerHTML = getUptimeString(uptimeObject(list.data[i].uptime));
 
                             if(list.data[i].status == 'online') {
                                 if ( document.getElementById("stat-"+list.data[i].pid).classList.contains("status-red") ) {
@@ -247,4 +247,8 @@
     Handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
         return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
     });
+
+    function restartPid( pid ) {
+        //cluster.restartProcess(pid, (reply) => {})
+    }
 </script>
