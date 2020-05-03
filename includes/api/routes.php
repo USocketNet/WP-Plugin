@@ -22,8 +22,8 @@
 <?php
 
     //Require the USocketNet class which have the core function of this plguin. 
-    require plugin_dir_path(__FILE__) . '/v1/class-auth.php';
-    require plugin_dir_path(__FILE__) . '/v1/class-verify.php';
+    require plugin_dir_path(__FILE__) . '/v1/class-user-auth.php';
+    require plugin_dir_path(__FILE__) . '/v1/class-user-verify.php';
     require plugin_dir_path(__FILE__) . '/v1/class-cluster-verify.php';
     require plugin_dir_path(__FILE__) . '/v1/class-cluster-list.php';
     require plugin_dir_path(__FILE__) . '/v1/class-project-verify.php';
@@ -35,12 +35,12 @@
     // Init check if USocketNet successfully request from wapi.
     function bytescrafter_usocketnet_route()
     {
-        register_rest_route( 'usocketnet/v1', 'auth', array(
+        register_rest_route( 'usocketnet/v1/user', 'auth', array(
             'methods' => 'POST',
             'callback' => array('BC_USN_Authenticate','initialize'),
         ));
 
-        register_rest_route( 'usocketnet/v1', 'verify', array(
+        register_rest_route( 'usocketnet/v1/user', 'verify', array(
             'methods' => 'POST',
             'callback' => array('BC_USN_Verification','initialize'),
         ));
