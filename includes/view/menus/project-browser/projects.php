@@ -110,7 +110,7 @@
                                         '>Copy Key</button>' +  
 
                                     '<button type="button" class="btn btn-success btn-sm"' +
-                                        ' onclick="window.location.href = `<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']."&project="; ?>' + item.ID + '`;" ' +
+                                        ' onclick="window.location.href = `<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']."&id="; ?>' + item.ID + '&name=' +item.app_name+ '`;" ' +
                                         ' title="Click this to navigate to variant list of this project."' + 
                                         ' >Variants</button>' +
 

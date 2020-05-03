@@ -53,7 +53,7 @@
                     }
                     
                     var appListAction = { 
-                        app_parent: '<?php echo $_GET['project']; ?>',
+                        app_parent: '<?php echo $_GET['id']; ?>',
                         action: 'ReloadVariants' 
                     };
                     $.ajax({
@@ -196,7 +196,7 @@
                 });
                 indexed_array.action = 'CreateNewApp';
                 <?php if(isset($_GET['project'])) {?>
-                indexed_array.app_parent = '<?php echo $_GET['project']; ?>';
+                indexed_array.app_parent = '<?php echo $_GET['id']; ?>';
                 <?php } ?>
                 // This will be handled by create-app.php.
                 $.ajax({
@@ -320,7 +320,7 @@
                     postParam.appcap_edit = $('#appcap_edit').val();
                 }
                 <?php if(isset($_GET['project'])) {?>
-                postParam.app_parent = '<?php echo $_GET['project']; ?>';
+                postParam.app_parent = '<?php echo $_GET['id']; ?>';
                 <?php } ?>
                 // This will be handled by create-app.php.
                 $.ajax({

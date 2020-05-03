@@ -28,7 +28,7 @@
 		</div>
 	<?php /* Header Section */ ?>
 
-	<?php if( !isset($_GET['project']) ) { ?>
+	<?php if( !isset($_GET['id']) && !isset($_GET['name']) ) { ?>
 
 		<div class="usn-panel-body">
 			<div class="usn-panel-first">
@@ -46,6 +46,9 @@
 
 		<div class="usn-panel-body">
 			<div class="usn-panel-first">
+				<div class="alert alert-secondary header-info">
+					<strong>Project: </strong><strong id="parent-name"><?php echo $_GET['name']; ?></strong>
+				</div>
 				<button type="button" class="btn btn-dark" onclick="window.location.href = '<?php echo get_home_url()."/wp-admin/admin.php?page=".$_GET['page']; ?>';" >Go Back</button>
 				<button id="RefreshAppList" type="button" class="btn btn-dark">Refresh List</button>
 				<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#CreateNewApp">Create Variant</button>
