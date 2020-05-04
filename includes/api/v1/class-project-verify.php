@@ -60,7 +60,7 @@
 			// STEP 3 - Verify the AppKey Secret if valid.
 			global $wpdb; 
 			$appsTable = USN_PROJECT_TAB;
-			$checkName = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, max_connect FROM $appsTable WHERE app_secret = '$app_id'");
+			$checkName = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, match_cap, max_connect FROM $appsTable WHERE app_secret = '$app_id'");
 
 			if( count($checkName) >= 1 ) {
 				if( $checkName[0]->app_status == "Active" ) {
@@ -73,6 +73,7 @@
 								"desc" => $checkName[0]->app_info,
 								"url" => $checkName[0]->app_website,
 								"status" => $checkName[0]->app_status,
+								"matchcap" => $checkName[0]->match_cap,
 								"capacity" => $checkName[0]->max_connect,
 								"parent" => $checkName[0]->app_parent,
 							)

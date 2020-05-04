@@ -83,7 +83,8 @@
                     // { "sTitle": "IDENTITY",   "mData": "ID" },
                     { "sTitle": "NAME",   "mData": "app_name" },
                     { "sTitle": "DESCRIPTION",   "mData": "app_info" },
-                    { "sTitle": "CAPACITY",   "mData": "max_connect" },
+                    { "sTitle": "USER / MATCH",   "mData": "match_cap" },
+                    { "sTitle": "MAX USER",   "mData": "max_connect" },
                     { "sTitle": "STATUS",   "mData": "app_status" },
                     { "sTitle": "OWNER",   "mData": "user_login" },
                     {"sTitle": "Action", "mRender": function(data, type, item)
@@ -97,7 +98,8 @@
                                         ' title="Click this to modified or delete this project."' +
                                         ' data-aid="' + item.ID + '"' +  
                                         ' data-aname="' + item.app_name + '"' +  
-                                        ' data-ainfo="' + item.app_info + '"' +  
+                                        ' data-ainfo="' + item.app_info + '"' + 
+                                        ' data-mcap="' + item.match_cap + '"' +   
                                         ' data-aurl="' + item.app_website + '"' +  
                                         ' data-asta="' + item.app_status + '"' +  
                                         ' data-acap="' + item.max_connect + '"' +
@@ -205,6 +207,7 @@
                             $('#appname_create').val('');
                             $('#appdesc_create').val('');
                             $('#appurl_create').val('');
+                            $('#appmtcap_create').val('');
                             $('#appcap_create').val('');
                         }
                         $('#CNAMessage').addClass('alert-'+data.status);
@@ -240,7 +243,8 @@
                 var data = e.relatedTarget.dataset;
                 $('#create-app-btn').removeClass('disabled');
                 $('#appsta_create').val( 'Active' );
-                $('#appcap_create').val( 1000 );
+                $('#appmtcap_create').val();
+                $('#appcap_create').val();
             });
 
             // MAKE SURE THAT TIMEOUT IS CANCELLED.
@@ -312,6 +316,7 @@
                     postParam.appname_edit = $('#appname_edit').val();
                     postParam.appdesc_edit = $('#appdesc_edit').val();
                     postParam.appurl_edit = $('#appurl_edit').val();
+                    postParam.appmtcap_edit = $('#appmtcap_edit').val();
                     postParam.appcap_edit = $('#appcap_edit').val();
                 }
 
@@ -371,6 +376,7 @@
                 $('#appdesc_edit').val( data.ainfo );
                 $('#appurl_edit').val( data.aurl );
                 $('#appsta_edit').val( data.asta );
+                $('#appmtcap_edit').val( data.mcap );
                 $('#appcap_edit').val( data.acap );
 
                 $('#delete-app-btn').removeClass('disabled');

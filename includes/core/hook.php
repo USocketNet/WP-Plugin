@@ -56,6 +56,7 @@
                 $sql .= "`app_name` varchar(120) NOT NULL, ";
                 $sql .= "`app_info` varchar(255) NOT NULL, ";
                 $sql .= "`app_website` varchar(255) NOT NULL, ";
+                $sql .= "`match_cap` int(7) NOT NULL DEFAULT '10', ";
                 $sql .= "`max_connect` int(7) NOT NULL DEFAULT '1000', ";
                 $sql .= "`date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, ";
                 $sql .= "PRIMARY KEY (`ID`), ";

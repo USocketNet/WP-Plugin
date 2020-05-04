@@ -22,10 +22,10 @@
 <?php
 
     //AJAX LISTENER for Apps
-	include_once ( plugin_dir_path( __FILE__ ) . '/apps/reload.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/apps/create.php' );
-	include_once ( plugin_dir_path( __FILE__ ) . '/apps/update.php' );
-    include_once ( plugin_dir_path( __FILE__ ) . '/apps/delete.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/project/reload.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/project/create.php' );
+	include_once ( plugin_dir_path( __FILE__ ) . '/project/update.php' );
+    include_once ( plugin_dir_path( __FILE__ ) . '/project/delete.php' );
     
     //AJAX LISTENER for Projects
     include_once ( plugin_dir_path( __FILE__ ) . '/cluster/reload.php' );

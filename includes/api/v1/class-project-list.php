@@ -59,7 +59,7 @@
 			// STEP 3 - Verify the AppKey Secret if valid.
 			global $wpdb; 
 			$appsTable = USN_PROJECT_TAB;
-			$applist = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, max_connect FROM $appsTable");
+			$applist = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, match_cap, max_connect FROM $appsTable");
 
 			if( count($applist) >= 1 ) {
 				return rest_ensure_response( 

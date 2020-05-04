@@ -46,7 +46,12 @@
                             <input required type="text" class="form-control" id="appurl_edit" name="appurl_edit" placeholder="http:/www.host.com/games/test">
                         </div>
                         <div class="form-group">
-                            <label for="appcap_edit">CAPACITY:</label>
+                            <label for="appmtcap_edit">USER / MATCH:</label>
+                            <input required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type="number" maxlength="7" class="form-control" id="appmtcap_edit" name="appmtcap_edit" placeholder="10">
+                        </div>	
+                        <div class="form-group">
+                            <label for="appcap_edit">MAX USER:</label>
                             <input required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                 type="number" maxlength="7" class="form-control" id="appcap_edit" name="appcap_edit" placeholder="1,000,000">
                         </div>	
