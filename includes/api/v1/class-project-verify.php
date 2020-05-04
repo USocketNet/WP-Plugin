@@ -25,7 +25,7 @@
 		public static function initialize() {
 
 			// STEP 1: Check if WPID and SNID is passed as this is REQUIRED!
-			if (!isset($_POST["wpid"]) || !isset($_POST["snid"]) || !isset($_POST["apid"]) ) {
+			if (!isset($_POST["wpid"]) || !isset($_POST["snid"]) || !isset($_POST["pkey"]) ) {
 				return rest_ensure_response( 
 					array(
 						"status" => "unknown",
@@ -35,7 +35,7 @@
 			}
 			$user_id = $_POST["wpid"];
             $session_token = $_POST["snid"];
-            $app_id = $_POST["apid"];
+            $prj_key = $_POST["pkey"];
 
 			// STEP 2: Verify the Token if Valid and not expired.
 			$wp_session_tokens = WP_Session_Tokens::get_instance($user_id);
@@ -60,7 +60,7 @@
 			// STEP 3 - Verify the AppKey Secret if valid.
 			global $wpdb; 
 			$appsTable = USN_PROJECT_TAB;
-			$checkName = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, match_cap, max_connect FROM $appsTable WHERE app_secret = '$app_id'");
+			$checkName = $wpdb->get_results("SELECT app_name, app_info, app_website, app_status, app_parent, match_cap, max_connect FROM $appsTable WHERE app_secret = '$prj_key'");
 
 			if( count($checkName) >= 1 ) {
 				if( $checkName[0]->app_status == "Active" ) {
