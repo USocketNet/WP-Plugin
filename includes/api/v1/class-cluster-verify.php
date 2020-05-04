@@ -38,14 +38,19 @@
 			global $wpdb; //Reference to wp mysql conn.
             $clusterTable = USN_CLUSTER_TAB;
 
-            $clusterCheck = $wpdb->get_results("SELECT cluster_name, cluster_info, cluster_capacity FROM $clusterTable WHERE cluster_secretkey = '$securekey'");
+            $clusterCheck = $wpdb->get_results("SELECT ID, cluster_name, cluster_info, cluster_capacity FROM $clusterTable WHERE cluster_secretkey = '$securekey'");
 
 
             if( count($clusterCheck) >= 1 ) {
                 return rest_ensure_response( 
                     array( 
                         'status' => 'success',
-                        'data' => $clusterCheck[0]
+                        'data' => array(
+							"clid" => $clusterCheck[0]->ID,
+							"name" => $clusterCheck[0]->cluster_name,
+							"info" => $clusterCheck[0]->cluster_info,
+							"capacity" => $clusterCheck[0]->cluster_capacity
+						)
                     ) 
                 );
             } else {
