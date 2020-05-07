@@ -32,6 +32,8 @@
 	DEFINE('USN_PROJECT_TAB', USN_PREFIX.'projects');
 
 	// Global as Plugin URL of USocketNet.
-	DEFINE('USN_PLUGIN', plugin_dir_url( __FILE__ ) . '../../' );
+	DEFINE('USN_PLUGIN', plugin_dir_path( __FILE__ ) . '../../' );
 	
+	// Global as Plugin URL of USocketNet.
+	DEFINE('USN_PLUGIN_URL', plugin_dir_url( __FILE__ ) . '../../' );
 ?>

@@ -35,25 +35,25 @@
     {
         function usn_plugin_admin_enqueue()
         {    
-            wp_enqueue_script( 'usn_popper_script', USN_PLUGIN . 'assets/popper/popper.min.js' ); 
-            wp_enqueue_script( 'usn_clipboard_script', USN_PLUGIN . 'assets/clipboard/clipboard.min.js' );    
-            wp_enqueue_script( 'usn_chartjs_script', USN_PLUGIN . 'assets/chartjs/chart.min.js' );
-            wp_enqueue_script( 'usn_handlebars_script', USN_PLUGIN . 'assets/handlebars/handlebars.js' );
+            wp_enqueue_script( 'usn_popper_script', USN_PLUGIN_URL . 'assets/popper/popper.min.js' ); 
+            wp_enqueue_script( 'usn_clipboard_script', USN_PLUGIN_URL . 'assets/clipboard/clipboard.min.js' );    
+            wp_enqueue_script( 'usn_chartjs_script', USN_PLUGIN_URL . 'assets/chartjs/chart.min.js' );
+            wp_enqueue_script( 'usn_handlebars_script', USN_PLUGIN_URL . 'assets/handlebars/handlebars.js' );
             
-            wp_enqueue_style( 'usn_bootstrap_style', USN_PLUGIN . 'assets/bootstrap/css/bootstrap.min.css' );
-            wp_enqueue_script( 'usn_bootstrap_script', USN_PLUGIN . 'assets/bootstrap/js/bootstrap.min.js' );
+            wp_enqueue_style( 'usn_bootstrap_style', USN_PLUGIN_URL . 'assets/bootstrap/css/bootstrap.min.css' );
+            wp_enqueue_script( 'usn_bootstrap_script', USN_PLUGIN_URL . 'assets/bootstrap/js/bootstrap.min.js' );
 
-            wp_enqueue_style( 'usn_datatables_style', USN_PLUGIN . 'assets/datatables/datatables.min.css' );
-            wp_enqueue_script( 'usn_datatables_script', USN_PLUGIN . 'assets/datatables/datatables.min.js' );
+            wp_enqueue_style( 'usn_datatables_style', USN_PLUGIN_URL . 'assets/datatables/datatables.min.css' );
+            wp_enqueue_script( 'usn_datatables_script', USN_PLUGIN_URL . 'assets/datatables/datatables.min.js' );
 
-            wp_enqueue_style( 'usn_jqueryui_style', USN_PLUGIN . 'assets/jquery-ui/jquery-ui.min.css' );
-            wp_enqueue_script( 'usn_jqueryui_script', USN_PLUGIN . 'assets/jquery-ui/jquery-ui.min.js' );
+            wp_enqueue_style( 'usn_jqueryui_style', USN_PLUGIN_URL . 'assets/jquery-ui/jquery-ui.min.css' );
+            wp_enqueue_script( 'usn_jqueryui_script', USN_PLUGIN_URL . 'assets/jquery-ui/jquery-ui.min.js' );
 
-            wp_enqueue_script( 'usn_socketio_script', USN_PLUGIN . 'assets/usocketnet/socket.io.js' ); 
-            wp_enqueue_script( 'usn_core_script', USN_PLUGIN . 'assets/usocketnet/usocketnet.js' ); 
+            wp_enqueue_script( 'usn_socketio_script', USN_PLUGIN_URL . 'assets/usocketnet/socket.io.js' ); 
+            wp_enqueue_script( 'usn_core_script', USN_PLUGIN_URL . 'assets/usocketnet/usocketnet.js' ); 
 
-            wp_enqueue_style( 'usn_admin_style', USN_PLUGIN . 'assets/custom/styles.css' );
-            wp_enqueue_script( 'usn_admin_script', USN_PLUGIN . 'assets/usocketnet/backend.js', array('jquery'), '1.0', true );
+            wp_enqueue_style( 'usn_admin_style', USN_PLUGIN_URL . 'assets/custom/styles.css' );
+            wp_enqueue_script( 'usn_admin_script', USN_PLUGIN_URL . 'assets/usocketnet/backend.js', array('jquery'), '1.0', true );
             wp_localize_script( 'usn_admin_script', 'ajaxurl', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
         }
         add_action( 'admin_enqueue_scripts', 'usn_plugin_admin_enqueue' );

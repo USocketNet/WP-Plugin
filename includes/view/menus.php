@@ -26,7 +26,7 @@
         {
             // Add new menu to the admin page.
             add_menu_page('USocketNet', 'USocketNet', 'manage_options', 'usocketnet-getting_started', 
-                'usocketnet_gettingstarted_page_callback', USN_PLUGIN . '/icon.png', 4 );
+                'usocketnet_gettingstarted_page_callback', USN_PLUGIN_URL . '/icon.png', 4 );
 
             add_submenu_page('usocketnet-getting_started', 'USN Getting Started', 'Getting Started', 
                 'manage_options', 'usocketnet-getting_started' );

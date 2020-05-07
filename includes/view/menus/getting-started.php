@@ -54,7 +54,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 card">
-					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-Nginx.jpg" alt="USocketNet">
+					<img class="card-img-top" src="<?php echo USN_PLUGIN_URL; ?>assets/images/USN-Nginx.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
 							Nginx is a web server which can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache. 
@@ -62,7 +62,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 card">
-					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-NodeJS.jpg" alt="USocketNet">
+					<img class="card-img-top" src="<?php echo USN_PLUGIN_URL; ?>assets/images/USN-NodeJS.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
 							Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code outside of a browser.
@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 card">
-					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-WordPress.jpg" alt="USocketNet">
+					<img class="card-img-top" src="<?php echo USN_PLUGIN_URL; ?>assets/images/USN-WordPress.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
 							WordPress is a free and open-source content management system based on PHP and MySQL. Features include a plugin architecture and a template system.
@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				<div class="col-md-3 card">
-					<img class="card-img-top" src="<?php echo USN_PLUGIN; ?>assets/images/USN-Unity.jpg" alt="USocketNet">
+					<img class="card-img-top" src="<?php echo USN_PLUGIN_URL; ?>assets/images/USN-Unity.jpg" alt="USocketNet">
 					<div class="card-body">
 						<p class="card-text">
 							Unity, the world's leading real-time engine, is used to create half of the world's games. Our flexible real-time tools offer incredible possibilities.
